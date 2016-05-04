@@ -1,0 +1,419 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6683CF421CDA6D5B0044727B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CF411CDA6D5B0044727B /* main.m */; };
+		6683CF451CDA6D5B0044727B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CF441CDA6D5B0044727B /* AppDelegate.m */; };
+		6683CF481CDA6D5B0044727B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CF471CDA6D5B0044727B /* ViewController.m */; };
+		6683CF4B1CDA6D5B0044727B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6683CF491CDA6D5B0044727B /* Main.storyboard */; };
+		6683CF4D1CDA6D5B0044727B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6683CF4C1CDA6D5B0044727B /* Assets.xcassets */; };
+		6683CF501CDA6D5B0044727B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6683CF4E1CDA6D5B0044727B /* LaunchScreen.storyboard */; };
+		6683CF5B1CDA6D5B0044727B /* HelsinkiBikesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CF5A1CDA6D5B0044727B /* HelsinkiBikesTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6683CF571CDA6D5B0044727B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6683CF351CDA6D5B0044727B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6683CF3C1CDA6D5B0044727B;
+			remoteInfo = HelsinkiBikes;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6683CF3D1CDA6D5B0044727B /* HelsinkiBikes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelsinkiBikes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6683CF411CDA6D5B0044727B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6683CF431CDA6D5B0044727B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6683CF441CDA6D5B0044727B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6683CF461CDA6D5B0044727B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6683CF471CDA6D5B0044727B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6683CF4A1CDA6D5B0044727B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6683CF4C1CDA6D5B0044727B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6683CF4F1CDA6D5B0044727B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6683CF511CDA6D5B0044727B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6683CF561CDA6D5B0044727B /* HelsinkiBikesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelsinkiBikesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6683CF5A1CDA6D5B0044727B /* HelsinkiBikesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelsinkiBikesTests.m; sourceTree = "<group>"; };
+		6683CF5C1CDA6D5B0044727B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6683CF3A1CDA6D5B0044727B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6683CF531CDA6D5B0044727B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6683CF341CDA6D5B0044727B = {
+			isa = PBXGroup;
+			children = (
+				6683CF3F1CDA6D5B0044727B /* HelsinkiBikes */,
+				6683CF591CDA6D5B0044727B /* HelsinkiBikesTests */,
+				6683CF3E1CDA6D5B0044727B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6683CF3E1CDA6D5B0044727B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6683CF3D1CDA6D5B0044727B /* HelsinkiBikes.app */,
+				6683CF561CDA6D5B0044727B /* HelsinkiBikesTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6683CF3F1CDA6D5B0044727B /* HelsinkiBikes */ = {
+			isa = PBXGroup;
+			children = (
+				6683CF431CDA6D5B0044727B /* AppDelegate.h */,
+				6683CF441CDA6D5B0044727B /* AppDelegate.m */,
+				6683CF461CDA6D5B0044727B /* ViewController.h */,
+				6683CF471CDA6D5B0044727B /* ViewController.m */,
+				6683CF491CDA6D5B0044727B /* Main.storyboard */,
+				6683CF4C1CDA6D5B0044727B /* Assets.xcassets */,
+				6683CF4E1CDA6D5B0044727B /* LaunchScreen.storyboard */,
+				6683CF511CDA6D5B0044727B /* Info.plist */,
+				6683CF401CDA6D5B0044727B /* Supporting Files */,
+			);
+			path = HelsinkiBikes;
+			sourceTree = "<group>";
+		};
+		6683CF401CDA6D5B0044727B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6683CF411CDA6D5B0044727B /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6683CF591CDA6D5B0044727B /* HelsinkiBikesTests */ = {
+			isa = PBXGroup;
+			children = (
+				6683CF5A1CDA6D5B0044727B /* HelsinkiBikesTests.m */,
+				6683CF5C1CDA6D5B0044727B /* Info.plist */,
+			);
+			path = HelsinkiBikesTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6683CF3C1CDA6D5B0044727B /* HelsinkiBikes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6683CF5F1CDA6D5B0044727B /* Build configuration list for PBXNativeTarget "HelsinkiBikes" */;
+			buildPhases = (
+				6683CF391CDA6D5B0044727B /* Sources */,
+				6683CF3A1CDA6D5B0044727B /* Frameworks */,
+				6683CF3B1CDA6D5B0044727B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelsinkiBikes;
+			productName = HelsinkiBikes;
+			productReference = 6683CF3D1CDA6D5B0044727B /* HelsinkiBikes.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6683CF551CDA6D5B0044727B /* HelsinkiBikesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6683CF621CDA6D5B0044727B /* Build configuration list for PBXNativeTarget "HelsinkiBikesTests" */;
+			buildPhases = (
+				6683CF521CDA6D5B0044727B /* Sources */,
+				6683CF531CDA6D5B0044727B /* Frameworks */,
+				6683CF541CDA6D5B0044727B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6683CF581CDA6D5B0044727B /* PBXTargetDependency */,
+			);
+			name = HelsinkiBikesTests;
+			productName = HelsinkiBikesTests;
+			productReference = 6683CF561CDA6D5B0044727B /* HelsinkiBikesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6683CF351CDA6D5B0044727B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Anteneh Sahledengel";
+				TargetAttributes = {
+					6683CF3C1CDA6D5B0044727B = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					6683CF551CDA6D5B0044727B = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 6683CF3C1CDA6D5B0044727B;
+					};
+				};
+			};
+			buildConfigurationList = 6683CF381CDA6D5B0044727B /* Build configuration list for PBXProject "HelsinkiBikes" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6683CF341CDA6D5B0044727B;
+			productRefGroup = 6683CF3E1CDA6D5B0044727B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6683CF3C1CDA6D5B0044727B /* HelsinkiBikes */,
+				6683CF551CDA6D5B0044727B /* HelsinkiBikesTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6683CF3B1CDA6D5B0044727B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6683CF501CDA6D5B0044727B /* LaunchScreen.storyboard in Resources */,
+				6683CF4D1CDA6D5B0044727B /* Assets.xcassets in Resources */,
+				6683CF4B1CDA6D5B0044727B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6683CF541CDA6D5B0044727B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6683CF391CDA6D5B0044727B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6683CF481CDA6D5B0044727B /* ViewController.m in Sources */,
+				6683CF451CDA6D5B0044727B /* AppDelegate.m in Sources */,
+				6683CF421CDA6D5B0044727B /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6683CF521CDA6D5B0044727B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6683CF5B1CDA6D5B0044727B /* HelsinkiBikesTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6683CF581CDA6D5B0044727B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6683CF3C1CDA6D5B0044727B /* HelsinkiBikes */;
+			targetProxy = 6683CF571CDA6D5B0044727B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6683CF491CDA6D5B0044727B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6683CF4A1CDA6D5B0044727B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6683CF4E1CDA6D5B0044727B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6683CF4F1CDA6D5B0044727B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6683CF5D1CDA6D5B0044727B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6683CF5E1CDA6D5B0044727B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6683CF601CDA6D5B0044727B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HelsinkiBikes/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ewketapps.HelsinkiBikes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6683CF611CDA6D5B0044727B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HelsinkiBikes/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ewketapps.HelsinkiBikes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6683CF631CDA6D5B0044727B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = HelsinkiBikesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ewketapps.HelsinkiBikesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelsinkiBikes.app/HelsinkiBikes";
+			};
+			name = Debug;
+		};
+		6683CF641CDA6D5B0044727B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = HelsinkiBikesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ewketapps.HelsinkiBikesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelsinkiBikes.app/HelsinkiBikes";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6683CF381CDA6D5B0044727B /* Build configuration list for PBXProject "HelsinkiBikes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6683CF5D1CDA6D5B0044727B /* Debug */,
+				6683CF5E1CDA6D5B0044727B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6683CF5F1CDA6D5B0044727B /* Build configuration list for PBXNativeTarget "HelsinkiBikes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6683CF601CDA6D5B0044727B /* Debug */,
+				6683CF611CDA6D5B0044727B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6683CF621CDA6D5B0044727B /* Build configuration list for PBXNativeTarget "HelsinkiBikesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6683CF631CDA6D5B0044727B /* Debug */,
+				6683CF641CDA6D5B0044727B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6683CF351CDA6D5B0044727B /* Project object */;
+}
