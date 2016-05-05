@@ -28,6 +28,7 @@
 		6683CF8A1CDA859A0044727B /* StringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CF891CDA859A0044727B /* StringFormatter.m */; };
 		6683CF8D1CDA8C600044727B /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CF8C1CDA8C600044727B /* DataManager.m */; };
 		6683CF911CDA902F0044727B /* ServicePointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CF901CDA902F0044727B /* ServicePointAnnotation.m */; };
+		6683CF941CDB6B350044727B /* UIScrollView+APParallaxHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CF921CDB6B350044727B /* UIScrollView+APParallaxHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,8 @@
 		6683CF8C1CDA8C600044727B /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		6683CF8F1CDA902F0044727B /* ServicePointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicePointAnnotation.h; sourceTree = "<group>"; };
 		6683CF901CDA902F0044727B /* ServicePointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServicePointAnnotation.m; sourceTree = "<group>"; };
+		6683CF921CDB6B350044727B /* UIScrollView+APParallaxHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+APParallaxHeader.m"; sourceTree = "<group>"; };
+		6683CF931CDB6B350044727B /* UIScrollView+APParallaxHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+APParallaxHeader.h"; sourceTree = "<group>"; };
 		679BB580373AABE35151A199 /* libPods-HelsinkiBikes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelsinkiBikes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B8EC2927CADF343772C5560 /* Pods-HelsinkiBikes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelsinkiBikes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HelsinkiBikes/Pods-HelsinkiBikes.debug.xcconfig"; sourceTree = "<group>"; };
 		F9CE75649D4C4F8B49E86CA3 /* Pods-HelsinkiBikes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelsinkiBikes.release.xcconfig"; path = "Pods/Target Support Files/Pods-HelsinkiBikes/Pods-HelsinkiBikes.release.xcconfig"; sourceTree = "<group>"; };
@@ -242,6 +245,8 @@
 		6683CF8E1CDA901E0044727B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6683CF921CDB6B350044727B /* UIScrollView+APParallaxHeader.m */,
+				6683CF931CDB6B350044727B /* UIScrollView+APParallaxHeader.h */,
 				6683CF8F1CDA902F0044727B /* ServicePointAnnotation.h */,
 				6683CF901CDA902F0044727B /* ServicePointAnnotation.m */,
 			);
@@ -418,6 +423,7 @@
 				6683CF871CDA83730044727B /* HSLAndTRECommon.m in Sources */,
 				6683CF911CDA902F0044727B /* ServicePointAnnotation.m in Sources */,
 				6683CF421CDA6D5B0044727B /* main.m in Sources */,
+				6683CF941CDB6B350044727B /* UIScrollView+APParallaxHeader.m in Sources */,
 				6683CF7C1CDA7C680044727B /* BikeStation.m in Sources */,
 				6683CF6C1CDA6F4E0044727B /* APIClient.m in Sources */,
 				6683CF801CDA7E220044727B /* ModelMapping.m in Sources */,

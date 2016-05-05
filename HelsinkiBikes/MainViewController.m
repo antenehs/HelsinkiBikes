@@ -11,6 +11,7 @@
 #import "DataManager.h"
 #import "ServicePointAnnotation.h"
 #import "BikeStation.h"
+#import "UIScrollView+APParallaxHeader.h"
 
 CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude =  24.941352};
 
@@ -27,25 +28,131 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
     [super viewDidLoad];
     
     skipUserLocation = YES;
+    self.bikeStations = @[];
     dataManager = [[DataManager alloc] init];
     
-    [self setupView];
-    [self initializeMapComponents];
+    [self setupMainView];
+    [self setupMapView];
+    [self initializeLocation];
     [self fetchAllBikeStations];
 }
 
-- (void)setupView {
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
+    [self setupMapView];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self setupMapView];
+}
+
+- (void)setupMainView {
     [self setTitle:NSLocalizedString(@"HELSINKI ROUTES", nil)];
+}
+
+- (void)setUpTimerView {
+    [startRideButton setTitle:NSLocalizedString(@"START RIDE", nil) forState:UIControlStateNormal];
+}
+
+- (void)setupMapView {
+    CGFloat height = 300;
+    [mapContainerView setFrame:CGRectMake(0, 0, self.view.frame.size.width, height)];
+    
+    CLLocationCoordinate2D coord = {.latitude =  60.1733239, .longitude =  24.9410248};
+    [self centerMapRegionToCoordinate:coord];
     
     currentLocationButton.layer.cornerRadius = 4.0;
     currentLocationButton.layer.borderWidth = 0.5;
     currentLocationButton.layer.borderColor = [AppManager systemYellowColor].CGColor;
     
+    [self.tableView addParallaxWithView:mapContainerView andHeight:height];
+}
+
+#pragma mark - table view methods
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.bikeStations.count;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bikeStationCell" forIndexPath:indexPath];
+    //TODO: show last update time.
+    BikeStation *station = self.bikeStations[indexPath.section];
+    
+    UILabel *nameLabel = (UILabel *)[cell viewWithTag:1002];
+    UILabel *bikesLabel = (UILabel *)[cell viewWithTag:1004];
+    UILabel *spacesLabel = (UILabel *)[cell viewWithTag:1005];
+    
+    nameLabel.text = station.name;
+    bikesLabel.text = [NSString stringWithFormat:@"%d %@", station.bikesAvailable.intValue, NSLocalizedString(@"BIKES", nil)];
+    spacesLabel.text = [NSString stringWithFormat:@"%d %@", station.spacesAvailable.intValue, NSLocalizedString(@"SPACES", nil)];
+    
+    bikesLabel.layer.borderWidth = 0.5;
+    bikesLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    bikesLabel.layer.cornerRadius = 2;
+    
+    spacesLabel.layer.borderWidth = 0.5;
+    spacesLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    spacesLabel.layer.cornerRadius = 2;
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 30;
+    }
+    
+    return 1;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 10.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section != 0) {
+        return nil;
+    }
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+    view.backgroundColor = [UIColor clearColor];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 110, 30)];
+    titleLabel.font = [UIFont systemFontOfSize:14];
+    titleLabel.textColor = [AppManager systemYellowColor];
+    titleLabel.adjustsFontSizeToFitWidth = YES;
+    if (section == 0) {
+        titleLabel.text = [self isLocationServiceAvailableWithNotification:NO] ? NSLocalizedString(@"NEAR ME", nil) : NSLocalizedString(@"ALL STATIONS", nil);
+    }
+    [view addSubview:titleLabel];
+    
+//    if (self._busStop.timetable_link) {
+//        fullTimeTableButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//        fullTimeTableButton.frame = CGRectMake(self.view.frame.size.width - 107, 0, 100, 30);
+//        [fullTimeTableButton setTitle:@"Full timetable" forState:UIControlStateNormal];
+//        [fullTimeTableButton setTintColor:[AppManager systemGreenColor]];
+//        [fullTimeTableButton addTarget:self action:@selector(showFullTimeTable:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        fullTimeTableButton.enabled = stopFetched;
+//        
+//        [view addSubview:fullTimeTableButton];
+//    }
+    
+    UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1000, 2)];
+    topLineView.backgroundColor = [AppManager systemYellowColor];
+    
+    [view addSubview:topLineView];
+//    view.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
+    
+    return view;
 }
 
 #pragma mark - map methods
-- (void)initializeMapComponents
+- (void)initializeLocation
 {
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
@@ -56,7 +163,6 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
     
     mapView.showsBuildings = YES;
     mapView.pitchEnabled = YES;
-    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
@@ -100,35 +206,36 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
     BOOL accessGranted = [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse;
     BOOL locationServicesEnabled = [CLLocationManager locationServicesEnabled];
     
+    BOOL enabled = YES;
+    NSString *errorString = nil;
     if (!locationServicesEnabled) {
-        if (notify) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Uh-Oh", nil)
-                                                                message:NSLocalizedString(@"Looks like location services is not enabled. Enable it from Settings.", nil)
-                                                               delegate:self
-                                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                      otherButtonTitles:NSLocalizedString(@"Settings", nil), nil];
-            alertView.tag = 2003;
-            [alertView show];
-        }
-        
-        return NO;
+        errorString = NSLocalizedString(@"Looks like location services is not enabled. Enable it from Settings.", nil);
+        enabled = NO;
     }
     
     if (!accessGranted) {
-        if (notify) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Uh-Oh", nil)
-                                                                message:NSLocalizedString(@"Looks like access is not granted to this app for location services. Grant access from Settings.", nil)
-                                                               delegate:self
-                                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                      otherButtonTitles:NSLocalizedString(@"Settings", nil), nil];
-            alertView.tag = 2003;
-            [alertView show];
-        }
-        
-        return NO;
+        errorString = NSLocalizedString(@"Looks like access is not granted to this app for location services. Grant access from Settings.", nil);
+        enabled = NO;
     }
     
-    return YES;
+    if (!enabled && notify) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Uh-Oh", nil)
+                                                                       message:errorString
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Settings", nil) style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {
+                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                                              }];
+        
+        UIAlertAction* okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleCancel
+                                                            handler:nil];
+        [alert addAction:okAction];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
+    return enabled;
 }
 
 - (void)plotBikeSations:(NSArray *)stations {
@@ -168,11 +275,14 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
             annotationView.image = [UIImage imageNamed:imageName];
             
             UIButton *leftCalloutButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 55, 50)];
-            [leftCalloutButton setImage:[UIImage imageNamed:@"goToLocation"] forState:UIControlStateNormal];
+            [leftCalloutButton setImage:[UIImage imageNamed:@"rightArrow"] forState:UIControlStateNormal];
+            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(52, 0, 0.5, 50)];
+            lineView.backgroundColor = [AppManager systemYellowColor];
+            [leftCalloutButton addSubview:lineView];
             annotationView.leftCalloutAccessoryView = leftCalloutButton;
             
-            [annotationView setFrame:CGRectMake(0, 0, 30, 45)];
-            annotationView.centerOffset = CGPointMake(0,-16);
+            [annotationView setFrame:CGRectMake(0, 0, 25, 37.5)];
+            annotationView.centerOffset = CGPointMake(0,-12);
             
         } else {
             annotationView.annotation = annotation;
@@ -209,6 +319,8 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
 - (void)fetchAllBikeStations {
     [dataManager getBikeStationsWithCompletionHandler:^(NSArray *allStations, NSString *error){
         if (!error) {
+            self.bikeStations = allStations;
+            [self.tableView reloadData];
             //Plot annotations
             [self plotBikeSations:allStations];
         }
@@ -225,6 +337,15 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
     }
 }
 
+- (IBAction)startTimerButtonTapped:(id)sender {
+    timerViewHeightConstraint.constant = timerViewHeightConstraint.constant == 60 ? 105 : 60;
+    
+    [UIView animateWithDuration:0.4 animations:^{
+        timerLabel.font = [UIFont systemFontOfSize:timerViewHeightConstraint.constant == 60 ? 40 : 60 weight:UIFontWeightUltraLight]; // TODO: in completion
+        [self.view layoutSubviews];
+        [timerView layoutSubviews];
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
