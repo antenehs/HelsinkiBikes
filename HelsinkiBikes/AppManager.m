@@ -8,12 +8,21 @@
 
 #import "AppManager.h"
 
-
 @implementation AppManager
 
 //fcbc19
 +(UIColor *)systemYellowColor {
     return [UIColor colorWithRed:0.988 green:0.737 blue:0.098 alpha:1.00];
+}
+
+//2ebd59
++(UIColor *)systemGreenColor {
+    return [UIColor colorWithRed:0.180 green:0.741 blue:0.349 alpha:1.00];
+}
+
+//fd4140
++(UIColor *)systemRedColor {
+    return [UIColor colorWithRed:0.992 green:0.255 blue:0.251 alpha:1.00];
 }
 
 @end

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Anteneh Sahledengel. All rights reserved.
 //
 
-#import "ServicePointAnnotation.h"
+#import "BikeStationAnnotation.h"
 
-@implementation ServicePointAnnotation
+@implementation BikeStationAnnotation
 
 @synthesize title, subtitle , coordinate, code, imageNameForView, annotIdentifier, isSelected;
 

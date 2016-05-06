@@ -40,5 +40,8 @@
 @property (nonatomic) BOOL realTimeData;
 
 @property (nonatomic)CLLocationCoordinate2D coordinates;
+@property (nonatomic, strong)NSString *bikesAvailableString;
+@property (nonatomic, strong)NSString *spacesAvailableString;
+@property (nonatomic)CLLocationDistance distance;
 
 @end

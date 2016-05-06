@@ -8,12 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "BouncingButton.h"
+
+typedef enum
+{
+    TimerViewModeHidden = 0,
+    TimerViewModeCompact = 1,
+    TimerViewModeNormal = 2,
+    TimerViewModeExpanded = 3
+} TimerViewMode;
 
 @interface MainViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource> {
     
     //TOP VIEW
     IBOutlet UIView *timerView;
-    IBOutlet UIButton *startRideButton;
+    IBOutlet BouncingButton *startRideButton;
     IBOutlet UILabel *timerLabel;
     IBOutlet NSLayoutConstraint *timerViewHeightConstraint;
     
@@ -22,10 +31,18 @@
     IBOutlet MKMapView *mapView;
     IBOutlet UIButton *currentLocationButton;
     
+    UILabel *lastUpdateTimeLabel;
+    
     CLLocationManager *locationManager;
     CLLocation * currentUserLocation;
     BOOL skipUserLocation;
+    BOOL isLocationServiceAvailable;
     
+    NSTimer *updateTimer;
+    NSDate *lastUpdateTime;
+    
+    NSString *tableViewInfoCellText;
+    BOOL showRetryButton;
     
 }
 

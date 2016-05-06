@@ -40,7 +40,7 @@
 #pragma mark - Bike station fetching
 -(void)fetchBikeStationsWithCompletionHandler:(ActionBlock)completion {
     [self.bikeStationApi doXmlApiFetchWithParams:nil responseDescriptor:[BikeStation responseDiscriptorForPath:@"stations"] andCompletionBlock:^(NSArray *responseArray, NSError *error) {
-        completion(responseArray, error);
+        completion(responseArray, [self formattedStationFetchErrorMessageForError:error]);
     }];
 }
 
@@ -59,6 +59,18 @@
             completion(nil, @"Station not found.");
         }
     }];
+}
+
+-(NSString *)formattedStationFetchErrorMessageForError:(NSError *)error{
+    if(!error) return nil;
+    
+    if (error.code == -1009) {
+        return NSLocalizedString(@"NO INTERNET CONNECTION", nil);
+    }else if (error.code == -1001) {
+        return NSLocalizedString(@"CONNECTION COULD NOT BE ESTABLISHED TO THE DATA PROVIDER.", nil);
+    }else{
+        return NSLocalizedString(@"UNKNOWN ERROR OCCURED", nil);
+    }
 }
 
 #pragma mark - Stops in areas search protocol implementation

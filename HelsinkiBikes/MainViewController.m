@@ -9,11 +9,14 @@
 #import "MainViewController.h"
 #import "AppManager.h"
 #import "DataManager.h"
-#import "ServicePointAnnotation.h"
+#import "BikeStationAnnotation.h"
 #import "BikeStation.h"
 #import "UIScrollView+APParallaxHeader.h"
+#import <pop/POP.h>
+#import "StringFormatter.h"
 
 CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude =  24.941352};
+const NSInteger kUpdateInterval = 30;
 
 @interface MainViewController ()
 
@@ -28,6 +31,8 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
     [super viewDidLoad];
     
     skipUserLocation = YES;
+    tableViewInfoCellText = NSLocalizedString(@"LOADING...", nil);
+    showRetryButton = NO;
     self.bikeStations = @[];
     dataManager = [[DataManager alloc] init];
     
@@ -35,12 +40,16 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
     [self setupMapView];
     [self initializeLocation];
     [self fetchAllBikeStations];
+    [self initUpdateTimer];
+    [self setTimerViewMode:TimerViewModeHidden animated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     [self setupMapView];
+    [self setUpTimerView];
+    [self.tableView reloadData];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -49,11 +58,11 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
 }
 
 - (void)setupMainView {
-    [self setTitle:NSLocalizedString(@"HELSINKI ROUTES", nil)];
-}
-
-- (void)setUpTimerView {
-    [startRideButton setTitle:NSLocalizedString(@"START RIDE", nil) forState:UIControlStateNormal];
+    [self setTitle:NSLocalizedString(@"HELSINKI BIKES", nil)];
+    
+    lastUpdateTimeLabel = [[UILabel alloc] init];
+    lastUpdateTimeLabel.font = [UIFont systemFontOfSize:11];
+    lastUpdateTimeLabel.textColor = [UIColor lightGrayColor];
 }
 
 - (void)setupMapView {
@@ -68,11 +77,71 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
     currentLocationButton.layer.borderColor = [AppManager systemYellowColor].CGColor;
     
     [self.tableView addParallaxWithView:mapContainerView andHeight:height];
+    //TODO: Scroll so that one cell is visible and do not allow scrolling above that.
+}
+
+- (void)initUpdateTimer {
+    updateTimer = [NSTimer scheduledTimerWithTimeInterval:kUpdateInterval target:self selector:@selector(updateStations:) userInfo:nil repeats:YES];
+}
+
+- (void)updateStations:(id)sender {
+    [self fetchAllBikeStations];
+}
+
+#pragma mark - Timer view methods
+- (void)setUpTimerView {
+    [startRideButton setTitle:NSLocalizedString(@"START RIDE", nil) forState:UIControlStateNormal];
+    [self setTimerViewMode:TimerViewModeCompact animated:YES];
+}
+
+- (void)setTimerViewMode:(TimerViewMode)viewMode animated:(BOOL)animated {
+    CGFloat height = 0;
+    CGFloat countDownCounterFont = 0;
+    UIColor *buttonColor = [AppManager systemRedColor];
+    NSString *buttonText = NSLocalizedString(@"END RIDE", nil);
+    
+    if (viewMode == TimerViewModeHidden) {
+        height = 60;
+        countDownCounterFont = 0;
+        buttonColor = [AppManager systemGreenColor];
+        buttonText = NSLocalizedString(@"START RIDE", nil);
+    } else if (viewMode == TimerViewModeCompact) {
+        height = 60;
+        countDownCounterFont = 40;
+        buttonColor = [AppManager systemGreenColor];
+        buttonText = NSLocalizedString(@"START RIDE", nil);
+    } else if(viewMode == TimerViewModeNormal) {
+        height = 115;
+        countDownCounterFont = 60;
+    } else {
+        height = 115;
+        countDownCounterFont = 30;
+    }
+    
+    timerViewHeightConstraint.constant = height;
+    timerLabel.font = [UIFont systemFontOfSize:countDownCounterFont weight:UIFontWeightUltraLight];
+    
+    //Animate size
+    [self springAnimationWithDuration:animated?0.5:0 animation:^{
+        [startRideButton setTitle:buttonText forState:UIControlStateNormal];
+        [startRideButton setBackgroundColor:buttonColor];
+        [self.view layoutSubviews];
+        [timerView layoutSubviews];
+    } completion:NULL];
+}
+
+- (void)springAnimationWithDuration:(NSTimeInterval)duration animation:(ActionBlock)animation completion:(void (^ __nullable)(BOOL finished))completion {
+    [UIView animateWithDuration:duration
+                          delay:0
+         usingSpringWithDamping:0.5
+          initialSpringVelocity:1.1
+                        options:0
+                     animations:animation completion:completion];
 }
 
 #pragma mark - table view methods
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.bikeStations.count;
+    return self.bikeStations.count > 0 ? self.bikeStations.count : 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -80,27 +149,57 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bikeStationCell" forIndexPath:indexPath];
-    //TODO: show last update time.
-    BikeStation *station = self.bikeStations[indexPath.section];
-    
-    UILabel *nameLabel = (UILabel *)[cell viewWithTag:1002];
-    UILabel *bikesLabel = (UILabel *)[cell viewWithTag:1004];
-    UILabel *spacesLabel = (UILabel *)[cell viewWithTag:1005];
-    
-    nameLabel.text = station.name;
-    bikesLabel.text = [NSString stringWithFormat:@"%d %@", station.bikesAvailable.intValue, NSLocalizedString(@"BIKES", nil)];
-    spacesLabel.text = [NSString stringWithFormat:@"%d %@", station.spacesAvailable.intValue, NSLocalizedString(@"SPACES", nil)];
-    
-    bikesLabel.layer.borderWidth = 0.5;
-    bikesLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    bikesLabel.layer.cornerRadius = 2;
-    
-    spacesLabel.layer.borderWidth = 0.5;
-    spacesLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    spacesLabel.layer.cornerRadius = 2;
-    
-    return cell;
+    if (self.bikeStations.count > 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bikeStationCell" forIndexPath:indexPath];
+        BikeStation *station = self.bikeStations[indexPath.section];
+        
+        UIView *bikeImage = [cell viewWithTag:1001];
+        UILabel *nameLabel = (UILabel *)[cell viewWithTag:1002];
+        UILabel *distanceLabel = (UILabel *)[cell viewWithTag:1003];
+        UILabel *bikesLabel = (UILabel *)[cell viewWithTag:1004];
+        UILabel *spacesLabel = (UILabel *)[cell viewWithTag:1005];
+        
+        distanceLabel.hidden = !isLocationServiceAvailable;
+        distanceLabel.text = [NSString stringWithFormat:@"%@m", [StringFormatter formatRoundedNumberFromDouble:station.distance roundDigits:0 androundUp:YES]];
+        
+        nameLabel.text = station.name.uppercaseString;
+        nameLabel.textColor = station.bikesAvailable.intValue == 0 ? [UIColor lightGrayColor] : [UIColor blackColor];
+        
+        UIColor *availabilityColor = [self colorForBikeAvailability:station];
+        bikeImage.tintColor = availabilityColor;
+        
+        UIFont *highlightFont = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
+        UIFont *normalFont = [UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
+        
+        bikesLabel.attributedText = [StringFormatter highlightSubstringInString:station.bikesAvailableString substring:[station.bikesAvailable stringValue] normalFont:normalFont highlightedFont:highlightFont hightlightColor:availabilityColor];
+        
+        spacesLabel.attributedText = [StringFormatter highlightSubstringInString:station.spacesAvailableString substring:[station.spacesAvailable stringValue] normalFont:normalFont highlightedFont:highlightFont hightlightColor:[self colorForSpaceAvailability:station]];
+        
+        bikesLabel.clipsToBounds = YES;
+        bikesLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        bikesLabel.layer.cornerRadius = 2;
+        
+        spacesLabel.clipsToBounds = YES;
+        spacesLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        spacesLabel.layer.cornerRadius = 2;
+        
+        return cell;
+    } else { //Show info cell
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell" forIndexPath:indexPath];
+        
+        UILabel *infoLabel = (UILabel *)[cell viewWithTag:1001];
+        UIButton *retryButton = (UIButton *)[cell viewWithTag:1002];
+        [retryButton setTitle:NSLocalizedString(@"RETRY", nil) forState:UIControlStateNormal];
+        
+        infoLabel.text = tableViewInfoCellText.uppercaseString;
+        retryButton.hidden = !showRetryButton;
+        return cell;
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return self.bikeStations.count > 0 ? 90
+                                       : showRetryButton ? 80 : 50;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -120,35 +219,58 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
         return nil;
     }
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
-    view.backgroundColor = [UIColor clearColor];
+    view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 110, 30)];
     titleLabel.font = [UIFont systemFontOfSize:14];
     titleLabel.textColor = [AppManager systemYellowColor];
     titleLabel.adjustsFontSizeToFitWidth = YES;
     if (section == 0) {
-        titleLabel.text = [self isLocationServiceAvailableWithNotification:NO] ? NSLocalizedString(@"NEAR ME", nil) : NSLocalizedString(@"ALL STATIONS", nil);
+        titleLabel.text = [self isLocationServiceAvailableWithNotification:NO] ? NSLocalizedString(@"NEAR YOU", nil) : NSLocalizedString(@"ALL STATIONS", nil);
     }
     [view addSubview:titleLabel];
     
-//    if (self._busStop.timetable_link) {
-//        fullTimeTableButton = [UIButton buttonWithType:UIButtonTypeSystem];
-//        fullTimeTableButton.frame = CGRectMake(self.view.frame.size.width - 107, 0, 100, 30);
-//        [fullTimeTableButton setTitle:@"Full timetable" forState:UIControlStateNormal];
-//        [fullTimeTableButton setTintColor:[AppManager systemGreenColor]];
-//        [fullTimeTableButton addTarget:self action:@selector(showFullTimeTable:) forControlEvents:UIControlEventTouchUpInside];
-//        
-//        fullTimeTableButton.enabled = stopFetched;
-//        
-//        [view addSubview:fullTimeTableButton];
-//    }
+    [view addSubview:lastUpdateTimeLabel];
     
-    UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1000, 2)];
+    lastUpdateTimeLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [view addConstraints:[NSLayoutConstraint
+                           constraintsWithVisualFormat:@"H:[label]-(15)-|"
+                           options:NSLayoutFormatDirectionLeadingToTrailing
+                           metrics:nil
+                           views:@{@"label" :lastUpdateTimeLabel}]];
+    [view addConstraints:[NSLayoutConstraint
+                          constraintsWithVisualFormat:@"V:|[label]|"
+                          options:NSLayoutFormatDirectionLeadingToTrailing
+                          metrics:nil
+                          views:@{@"label" :lastUpdateTimeLabel}]];
+    [view layoutIfNeeded];
+    
+    lastUpdateTimeLabel.hidden = !lastUpdateTime;
+    [self setLastUpdateTime];
+    
+    UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2000, 2)];
     topLineView.backgroundColor = [AppManager systemYellowColor];
     
     [view addSubview:topLineView];
-//    view.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
     
     return view;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.bikeStations.count < 1) return;
+    
+    BikeStation *station = self.bikeStations[indexPath.section];
+    
+    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{[self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];}
+                     completion:(void (^ __nullable)(BOOL finished))^ {
+                         [self centerMapRegionToCoordinate:station.coordinates];
+                         [self selectLocationAnnotationWithCode:station.stationId];
+                     }];
+    
 }
 
 #pragma mark - map methods
@@ -163,6 +285,8 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
     
     mapView.showsBuildings = YES;
     mapView.pitchEnabled = YES;
+    
+    isLocationServiceAvailable = [self isLocationServiceAvailableWithNotification:NO];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
@@ -171,16 +295,20 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
     if (currentUserLocation == nil && !skipUserLocation) {
         currentUserLocation = newLocation;
         [self centerMapRegionToCoordinate:currentUserLocation.coordinate];
+        self.bikeStations = [self evaluateDistanceAndSortStations:self.bikeStations];
+        [self.tableView reloadData];
         return;
     }
     
     skipUserLocation = NO;
     
-    //    CLLocationDistance dist = [currentUserLocation distanceFromLocation:newLocation];
-    //    if (dist > 10) {
-    //        currentUserLocation = newLocation;
-    //        [self centerMapRegionToCoordinate:currentUserLocation.coordinate];
-    //    }
+    CLLocationDistance dist = [currentUserLocation distanceFromLocation:newLocation];
+    if (dist > 25) {
+        currentUserLocation = newLocation;
+        [self evaluateDistanceAndSortStations:self.bikeStations];
+        [self.tableView reloadData];
+        [self centerMapRegionToCoordinate:currentUserLocation.coordinate]; //TODO: Only center in ride mode.
+    }
 }
 
 -(BOOL)centerMapRegionToCoordinate:(CLLocationCoordinate2D)coordinate{
@@ -240,7 +368,7 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
 
 - (void)plotBikeSations:(NSArray *)stations {
     for (id<MKAnnotation> annotation in mapView.annotations) {
-        if ([annotation isKindOfClass:[ServicePointAnnotation class]]) {
+        if ([annotation isKindOfClass:[BikeStationAnnotation class]]) {
             [mapView removeAnnotation:annotation];
         }
     }
@@ -251,7 +379,7 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
         NSString * subTitle = [NSString stringWithFormat:@"%d bikes - %d spaces", station.bikesAvailable.intValue, station.spacesAvailable.intValue];
         CLLocationCoordinate2D coords = station.coordinates;
         
-        ServicePointAnnotation *newAnnotation = [[ServicePointAnnotation alloc] initWithTitle:title andSubtitle:subTitle andCoordinate:coords];
+        BikeStationAnnotation *newAnnotation = [[BikeStationAnnotation alloc] initWithTitle:title andSubtitle:subTitle andCoordinate:coords];
         newAnnotation.code = station.stationId;
         newAnnotation.imageNameForView = @"bikeAnnotation";
         newAnnotation.annotIdentifier = @"bikeAnnotation";
@@ -262,8 +390,8 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
 
 - (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     //    static NSString *selectedIdentifier = @"selectedLocation";
-    if ([annotation isKindOfClass:[ServicePointAnnotation class]]) {
-        ServicePointAnnotation *spAnnotation = (ServicePointAnnotation *)annotation;
+    if ([annotation isKindOfClass:[BikeStationAnnotation class]]) {
+        BikeStationAnnotation *spAnnotation = (BikeStationAnnotation *)annotation;
         
         MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:spAnnotation.annotIdentifier];
         if (annotationView == nil) {
@@ -297,9 +425,9 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     id <MKAnnotation> annotation = [view annotation];
-    if ([annotation isKindOfClass:[ServicePointAnnotation class]])
+    if ([annotation isKindOfClass:[BikeStationAnnotation class]])
     {
-        ServicePointAnnotation *spAnnotation = (ServicePointAnnotation *)annotation;
+        BikeStationAnnotation *spAnnotation = (BikeStationAnnotation *)annotation;
         MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:spAnnotation.coordinate addressDictionary:nil];
         MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
         [mapItem setName:spAnnotation.title];
@@ -315,16 +443,44 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
                                   MKLaunchOptionsDirectionsModeWalking, MKLaunchOptionsDirectionsModeKey, nil]];
 }
 
+-(void)selectLocationAnnotationWithCode:(NSString *)code{
+    for (id<MKAnnotation> annotation in mapView.annotations) {
+        if ([annotation isKindOfClass:[BikeStationAnnotation class]]) {
+            BikeStationAnnotation *sAnnot = (BikeStationAnnotation *)annotation;
+            if ([sAnnot.code isEqualToString:code]) {
+                [mapView selectAnnotation:annotation animated:YES];
+            }
+        }
+    }
+}
+
 #pragma mark - Api methods
 - (void)fetchAllBikeStations {
     [dataManager getBikeStationsWithCompletionHandler:^(NSArray *allStations, NSString *error){
         if (!error) {
-            self.bikeStations = allStations;
-            [self.tableView reloadData];
+            self.bikeStations = [self evaluateDistanceAndSortStations:allStations];
             //Plot annotations
             [self plotBikeSations:allStations];
+            lastUpdateTime = [NSDate date];
+        } else {
+            tableViewInfoCellText = error;
+            showRetryButton = YES;
         }
+        
+        [self.tableView reloadData];
     }];
+    
+    [self setLastUpdateTime];
+}
+
+-(void)setLastUpdateTime{
+    if (!lastUpdateTime) return;
+    if ([lastUpdateTime timeIntervalSinceNow] > -180) {
+        lastUpdateTimeLabel.text = NSLocalizedString(@"UPDATED JUST NOW", nil);
+    }else{
+        lastUpdateTimeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"LAST UPDATED %@", nil), [StringFormatter formatPrittyDate:lastUpdateTime]];
+    }
+    
 }
 
 #pragma mark - IbActions
@@ -338,13 +494,79 @@ CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude = 
 }
 
 - (IBAction)startTimerButtonTapped:(id)sender {
-    timerViewHeightConstraint.constant = timerViewHeightConstraint.constant == 60 ? 105 : 60;
+    TimerViewMode mode = timerViewHeightConstraint.constant == 60 ? TimerViewModeNormal : TimerViewModeCompact;
+    [self setTimerViewMode:mode animated:YES];
     
-    [UIView animateWithDuration:0.4 animations:^{
-        timerLabel.font = [UIFont systemFontOfSize:timerViewHeightConstraint.constant == 60 ? 40 : 60 weight:UIFontWeightUltraLight]; // TODO: in completion
-        [self.view layoutSubviews];
-        [timerView layoutSubviews];
+//    POPBasicAnimation *scaleAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPScrollViewContentOffset];
+//    scaleAnimation.toValue = [NSValue valueWithCGSize:CGSizeZero];
+//    [self.tableView pop_addAnimation:scaleAnimation forKey:@"tableViewToTopAnimation"];
+    
+//    [self.tableView setContentOffset:CGPointZero animated:YES];
+}
+
+- (IBAction)retryButtonTapped:(id)sender {
+    UIButton *retryButton = (UIButton *)sender;
+    
+    [retryButton setTitle:NSLocalizedString(@"RETRYING...", nil) forState:UIControlStateNormal];
+    [self fetchAllBikeStations];
+}
+
+#pragma mark - Bike station helpers
+- (UIColor *)colorForBikeAvailability:(BikeStation *)bikeStation {
+    int bikes = bikeStation.bikesAvailable.intValue;
+    int total = bikeStation.bikesAvailable.intValue + bikeStation.spacesAvailable.intValue;
+    
+    if (bikes == 0) {
+        return [UIColor lightGrayColor];
+    } else if (bikes < 5 && total > 2 * bikes) {
+        return [AppManager systemYellowColor];
+    } else {
+        return [AppManager systemGreenColor];
+    }
+}
+
+- (UIColor *)colorForSpaceAvailability:(BikeStation *)bikeStation {
+    int spaces = bikeStation.spacesAvailable.intValue;
+    int total = bikeStation.bikesAvailable.intValue + bikeStation.spacesAvailable.intValue;
+    
+    if (spaces == 0) {
+        return [UIColor lightGrayColor];
+    } else if (spaces < 5 && total > 2 * spaces) {
+        return [AppManager systemYellowColor];
+    } else {
+        return [AppManager systemGreenColor];
+    }
+}
+
+- (NSArray *)evaluateDistanceAndSortStations:(NSArray *)stations {
+    if (!isLocationServiceAvailable && !currentUserLocation && !stations) { return stations; }
+    
+    for (BikeStation *station in stations) {
+        CLLocation *stationLocation = [[CLLocation alloc] initWithLatitude:station.coordinates.latitude longitude:station.coordinates.longitude];
+        CLLocationDistance dist = [currentUserLocation distanceFromLocation:stationLocation];
+        station.distance = dist;
+    }
+    
+    stations = [self sortStationsByDistance:stations];
+    return stations;
+}
+
+- (NSArray *)sortStationsByDistance:(NSArray *)stations {
+    NSArray *sortedArray = [stations sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        if ([a isKindOfClass:BikeStation.class] && [b isKindOfClass:BikeStation.class]) {
+            double first = [(BikeStation*)a distance];
+            double second = [(BikeStation*)b distance];
+            
+            if (first < second)
+                return NSOrderedAscending;
+            else if (first > second)
+                return NSOrderedDescending;
+        }
+        
+        return NSOrderedSame;
     }];
+    
+    return sortedArray;
 }
 
 - (void)didReceiveMemoryWarning {

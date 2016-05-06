@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '3626F321832D97F3FD7F07C0'
+               BlueprintIdentifier = '98FF5B9C7BF1A0EFFD5E0E9D'
                BlueprintName = 'RKXMLReaderSerialization'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libRKXMLReaderSerialization.a'>

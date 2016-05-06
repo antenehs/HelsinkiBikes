@@ -8,6 +8,8 @@ target 'HelsinkiBikes' do
 pod 'RestKit', '~> 0.24.0’
 pod 'RKXMLReaderSerialization', :git => 'https://github.com/RestKit/RKXMLReaderSerialization.git', :branch => 'master'
 
+pod 'pop', '~> 1.0'
+
 end
 
 target 'HelsinkiBikesTests' do

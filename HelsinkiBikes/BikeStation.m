@@ -43,4 +43,24 @@
     return self.xCoord && self.yCoord;
 }
 
+-(NSString *)bikesAvailableString {
+    if (self.bikesAvailable.intValue == 0) {
+        return NSLocalizedString(@"NO BIKES", nil);
+    } else if(self.bikesAvailable.intValue == 1) {
+        return [NSString stringWithFormat:@"1 %@", NSLocalizedString(@"BIKE", nil)];
+    } else {
+        return [NSString stringWithFormat:@"%d %@",self.bikesAvailable.intValue, NSLocalizedString(@"BIKES", nil)];
+    }
+}
+
+-(NSString *)spacesAvailableString {
+    if (self.spacesAvailable.intValue == 0) {
+        return NSLocalizedString(@"NO RETURN SPACE", nil);
+    } else if(self.spacesAvailable.intValue == 1) {
+        return [NSString stringWithFormat:@"1 %@", NSLocalizedString(@"SPACE", nil)];
+    } else {
+        return [NSString stringWithFormat:@"%d %@",self.spacesAvailable.intValue, NSLocalizedString(@"SPACES", nil)];
+    }
+}
+
 @end

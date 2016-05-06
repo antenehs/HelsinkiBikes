@@ -92,6 +92,49 @@
     
 }
 
++(NSString *)formatPrittyDate:(NSDate *)date{
+    NSDateFormatter *formatter;
+    
+    NSDateComponents *otherDay = [[NSCalendar currentCalendar] components:NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
+    
+    NSDateComponents *today = [[NSCalendar currentCalendar] components:NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:[NSDate date]];
+    //If date is today
+    if([today day] == [otherDay day] &&
+       [today month] == [otherDay month] &&
+       [today year] == [otherDay year] &&
+       [today era] == [otherDay era]) {
+        
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"HH:mm"];
+        
+        return [formatter stringFromDate:date];
+    }else if([today day] == [otherDay day] + 1 &&
+             [today month] == [otherDay month] &&
+             [today year] == [otherDay year] &&
+             [today era] == [otherDay era]) {
+        
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"HH:mm"];
+        
+        return @"Yesterday";
+    }else if([today day] == [otherDay day] + 2 &&
+             [today month] == [otherDay month] &&
+             [today year] == [otherDay year] &&
+             [today era] == [otherDay era]) {
+        
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"HH:mm"];
+        
+        return @"2 days ago";
+    }else{
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"d.MM.yy"];
+        
+        return [formatter stringFromDate:date];;
+    }
+}
+
+
 +(NSAttributedString *)formatAttributedDurationString:(NSInteger)seconds withFont:(UIFont *)font{
     
     UIFont *smallerFont = [font fontWithSize:16.0];
@@ -185,10 +228,13 @@
     }
 }
 
-+(NSAttributedString *)highlightSubstringInString:(NSString *)text substring:(NSString *)substring withNormalFont:(UIFont *)font{
-//    [UIColor colorWithRed:51.0/255.0 green:153.0/255.0 blue:102/255.0 alpha:1.0]
-    NSMutableDictionary *subStringDict = [NSMutableDictionary dictionaryWithObject:[AppManager systemYellowColor] forKey:NSForegroundColorAttributeName];
-    [subStringDict setObject:font forKey:NSFontAttributeName];
++(NSAttributedString *)highlightSubstringInString:(NSString *)text substring:(NSString *)substring normalFont:(UIFont *)font hightlightColor:(UIColor *)color {
+    return [self highlightSubstringInString:text substring:substring normalFont:font highlightedFont:font hightlightColor:color];
+}
+
++(NSAttributedString *)highlightSubstringInString:(NSString *)text substring:(NSString *)substring normalFont:(UIFont *)font highlightedFont:(UIFont *)highlightedFont hightlightColor:(UIColor *)color{
+    NSMutableDictionary *subStringDict = [NSMutableDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
+    [subStringDict setObject:highlightedFont forKey:NSFontAttributeName];
     
     NSMutableDictionary *restStringDict = [NSMutableDictionary dictionaryWithObject:font forKey:NSFontAttributeName];
     

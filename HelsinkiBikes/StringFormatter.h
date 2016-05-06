@@ -15,11 +15,13 @@
 +(NSString *)formatHSLAPITimeToHumanTime:(NSString *)hslTime;
 +(NSString *)formatDurationString:(NSInteger)seconds;
 +(NSString *)formatFullDurationString:(NSInteger)seconds;
++(NSString *)formatPrittyDate:(NSDate *)date;
 +(NSAttributedString *)formatAttributedDurationString:(NSInteger)seconds withFont:(UIFont *)font;
 +(NSAttributedString *)formatAttributedString:(NSString *)numberString withUnit:(NSString *)unitString withFont:(UIFont *)font andUnitFontSize:(NSInteger)smallFontSize;
 +(NSString *)formatHSLDateWithDots:(NSString *)hslData;
 +(NSString *)commaSepStringFromArray:(NSArray *)array withSeparator:(NSString *)separator;
-+(NSAttributedString *)highlightSubstringInString:(NSString *)text substring:(NSString *)substring withNormalFont:(UIFont *)font;
++(NSAttributedString *)highlightSubstringInString:(NSString *)text substring:(NSString *)substring normalFont:(UIFont *)font hightlightColor:(UIColor *)color;
++(NSAttributedString *)highlightSubstringInString:(NSString *)text substring:(NSString *)substring normalFont:(UIFont *)font highlightedFont:(UIFont *)highlightedFont hightlightColor:(UIColor *)color;
 +(CLLocationCoordinate2D)convertStringTo2DCoord:(NSString *)coordString;
 +(NSString *)convert2DCoordToString:(CLLocationCoordinate2D)coord;
 +(NSString *)formatRoundedNumberFromDouble:(double)doubleVal roundDigits:(int)roundPoints androundUp:(BOOL)roundUp;

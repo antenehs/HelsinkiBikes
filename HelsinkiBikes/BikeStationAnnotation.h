@@ -15,7 +15,7 @@
 //    SalesPointAnnotationType = 2
 //} AnnotationType;
 
-@interface ServicePointAnnotation : NSObject<MKAnnotation> {
+@interface BikeStationAnnotation : NSObject<MKAnnotation> {
     
 	NSString *title;
 	CLLocationCoordinate2D coordinate;

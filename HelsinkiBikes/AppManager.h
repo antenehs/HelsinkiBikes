@@ -12,5 +12,7 @@
 @interface AppManager : NSObject
 
 +(UIColor *)systemYellowColor;
++(UIColor *)systemGreenColor;
++(UIColor *)systemRedColor;
 
 @end
