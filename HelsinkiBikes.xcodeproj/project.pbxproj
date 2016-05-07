@@ -355,6 +355,7 @@
 				TargetAttributes = {
 					6683CF3C1CDA6D5B0044727B = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = FGEKQ9U6E7;
 					};
 					6683CF551CDA6D5B0044727B = {
 						CreatedOnToolsVersion = 7.3;
@@ -620,6 +621,7 @@
 			baseConfigurationReference = 9B8EC2927CADF343772C5560 /* Pods-HelsinkiBikes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)/**",
 					"\"${PODS_ROOT}/Headers/Public\"/**",
@@ -634,7 +636,7 @@
 				);
 				INFOPLIST_FILE = HelsinkiBikes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ewketapps.HelsinkiBikes;
+				PRODUCT_BUNDLE_IDENTIFIER = asa.ewketapps.helsinkibikes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -645,6 +647,7 @@
 			baseConfigurationReference = F9CE75649D4C4F8B49E86CA3 /* Pods-HelsinkiBikes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)/**",
 					"\"${PODS_ROOT}/Headers/Public\"/**",
@@ -659,7 +662,7 @@
 				);
 				INFOPLIST_FILE = HelsinkiBikes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ewketapps.HelsinkiBikes;
+				PRODUCT_BUNDLE_IDENTIFIER = asa.ewketapps.helsinkibikes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

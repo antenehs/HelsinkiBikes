@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HelsinkiBikes/MainViewController.m"
-            timestampString = "484320079.941064"
+            timestampString = "484327924.160304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "780"
-            endingLineNumber = "780"
+            startingLineNumber = "776"
+            endingLineNumber = "776"
             landmarkName = "-sortStationsByDistance:"
             landmarkType = "5">
          </BreakpointContent>
@@ -168,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HelsinkiBikes/MainViewController.m"
-            timestampString = "484320079.941064"
+            timestampString = "484327924.160304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
             landmarkName = "-updateTime"
             landmarkType = "5">
          </BreakpointContent>

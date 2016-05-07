@@ -69,7 +69,7 @@
 "Feel free to contact me for anything, even just to say hi!" = "Ota yhteyttä vaikka vaan sanoaksesi hei!";
 
 
-"HELSINKI BIKES" = "HELSINKI PYÖRÄT";
+"HELSINKI BIKES" = "HELSINKI-PYÖRÄT";
 
 
 "Hi Helsinki Bikes Guys - " = "Hei Helsinki Bikes! - ";
@@ -96,7 +96,7 @@
 "NEAR YOU" = "LÄHELLÄ SINUA";
 
 
-"NO BIKES" = "EI PYÖRÄÄ";
+"NO BIKES" = "EI PYÖRIÄ";
 
 
 "NO EXTRA CHARGE" = "EI LISÄMAKSUA";
@@ -105,7 +105,7 @@
 "NO INTERNET CONNECTION" = "EI INTERNET YHTEYTTÄ";
 
 
-"NO RETURN SPACE" = "EI PALAUTUSPAIKKOJA";
+"NO RETURN SPACE" = "EI VAPAITA PAIKKOJA";
 
 
 "NOTIFICATIONS" = "ILMOITUKSET";
@@ -208,215 +208,3 @@
 
 
 "© 2016 Ewket Apps. This app is made to help people use HSL's City Bike service and it is not affiliated with HSL in anyway. " = "© 2016 EwketApps. Tämä sovellus on luotu auttamaan ihmisiä käyttämään Helsingin kaupunkipyöriä. Emme ole millään tavalla yhteydessä HSL:n toimintaan.";
-
-
-
-
-
-
-
-
-
-"1,5 Euro extra charge" = "1,5 Euro extra charge";
-
-
-"4,5 Euro extra charge" = "4,5 Euro extra charge";
-
-
-"5 Minutes Before Free Time End" = "5 Minutes Before Free Time End";
-
-
-"5 mins before free time ends" = "5 mins before free time ends";
-
-
-"10 mins before free time ends" = "10 mins before free time ends";
-
-
-"30 mins before max time" = "30 mins before max time";
-
-
-"30 minutes remaining for the max allowed time." = "30 minutes remaining for the max allowed time.";
-
-
-"ALL STATIONS" = "ALL STATIONS";
-
-
-"About Helsinki City Bikes" = "About Helsinki City Bikes";
-
-
-"BIKE" = "BIKE";
-
-
-"BIKES" = "BIKES";
-
-
-"CONNECTION COULD NOT BE ESTABLISHED TO THE DATA PROVIDER." = "CONNECTION COULD NOT BE ESTABLISHED TO THE DATA PROVIDER.";
-
-
-"Cancel" = "Cancel";
-
-
-"Check out Helsinki bikes for using HSL City Bikes." = "Check out Helsinki bikes for using HSL City Bikes.";
-
-
-"Contact Me" = "Contact Me";
-
-
-"Custom" = "Custom";
-
-
-"END RIDE" = "END RIDE";
-
-
-"EXTRA CHARGE" = "EXTRA CHARGE";
-
-
-"Enable Notifications" = "Enable Notifications";
-
-
-"Enable notifications to be updated about several things such as when free ride time is about to end and when you are charged certain amount of money." = "Enable notifications to be updated about several things such as when free ride time is about to end and when you are charged certain amount of money.";
-
-
-"Feel free to contact me for anything, even just to say hi!" = "Feel free to contact me for anything, even just to say hi!";
-
-
-"HELSINKI BIKES" = "HELSINKI BIKES";
-
-
-"Hi Helsinki Bikes Guys - " = "Hi Helsinki Bikes Guys - ";
-
-
-"LAST UPDATED %@" = "LAST UPDATED %@";
-
-
-"LOADING..." = "LOADING...";
-
-
-"Looks like access is not granted to this app for location services. Grant access from Settings." = "Looks like access is not granted to this app for location services. Grant access from Settings.";
-
-
-"Looks like location services is not enabled. Enable it from Settings." = "Looks like location services is not enabled. Enable it from Settings.";
-
-
-"MAX TIME EXCEEDED. CHARGE" = "MAX TIME EXCEEDED. CHARGE";
-
-
-"MORE" = "MORE";
-
-
-"NEAR YOU" = "NEAR YOU";
-
-
-"NO BIKES" = "NO BIKES";
-
-
-"NO EXTRA CHARGE" = "NO EXTRA CHARGE";
-
-
-"NO INTERNET CONNECTION" = "NO INTERNET CONNECTION";
-
-
-"NO RETURN SPACE" = "NO RETURN SPACE";
-
-
-"NOTIFICATIONS" = "NOTIFICATIONS";
-
-
-"No Access to Notifications Granted" = "No Access to Notifications Granted";
-
-
-"Notifications" = "Notifications";
-
-
-"OK" = "OK";
-
-
-"Please grant access to Notifications from Settings to use this feature." = "Please grant access to Notifications from Settings to use this feature.";
-
-
-"RETRY" = "RETRY";
-
-
-"RETRYING..." = "RETRYING...";
-
-
-"Rate" = "Rate";
-
-
-"Report A Bug" = "Report A Bug";
-
-
-"Request A Feature" = "Request A Feature";
-
-
-"FREE SPACE" = "FREE SPACE";
-
-
-"FREE SPACES" = "FREE SPACES";
-
-
-"START RIDE" = "START RIDE";
-
-
-"Say Hi!" = "Say Hi!";
-
-
-"Settings" = "Settings";
-
-
-"Share on Facebook" = "Share on Facebook";
-
-
-"Share on Twitter" = "Share on Twitter";
-
-
-"Sorry" = "Sorry";
-
-
-"Tell A Friend" = "Tell A Friend";
-
-
-"They say sharing is caring, right?." = "They say sharing is caring, right?.";
-
-
-"UNKNOWN ERROR OCCURED" = "UNKNOWN ERROR OCCURED";
-
-
-"UPDATED JUST NOW" = "UPDATED JUST NOW";
-
-
-"Uh-Oh" = "Uh-Oh";
-
-
-"When free time ends" = "When free time ends";
-
-
-"You can't post to Facebook right now. Make sure your device has an internet connection and you have at least one Facebook account setup" = "You can't post to Facebook right now. Make sure your device has an internet connection and you have at least one Facebook account setup";
-
-
-"You can't send a tweet right now. Make sure your device has an internet connection and you have at least one Twitter account setup" = "You can't send a tweet right now. Make sure your device has an internet connection and you have at least one Twitter account setup";
-
-
-"Your free usage period just end. You will be charged extra from now on." = "Your free usage period just end. You will be charged extra from now on.";
-
-
-"Your free usage period will end in 5 minutes" = "Your free usage period will end in 5 minutes";
-
-
-"Your free usage period will end in 10 minutes" = "Your free usage period will end in 10 minutes";
-
-
-"[Helsinki Bikes Bug Report] - " = "[Helsinki Bikes Bug Report] - ";
-
-
-"[Helsinki Bikes Feature Request] - " = "[Helsinki Bikes Feature Request] - ";
-
-
-"https://www.hsl.fi/en/citybikes" = "https://www.hsl.fi/en/citybikes";
-
-
-"see stations nearby" = "see stations nearby";
-
-
-"© 2016 Ewket Apps. This app is made to help people use HSL's City Bike service and it is not affiliated with HSL in anyway. " = "© 2016 Ewket Apps. This app is made to help people use HSL's City Bike service and it is not affiliated with HSL in anyway. ";
-

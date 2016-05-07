@@ -517,7 +517,7 @@ const NSInteger kChargableTimeUnit = 1800;
     
     CLLocationDistance dist = [currentUserLocation distanceFromLocation:newLocation];
     CLLocationDistance distTreshold = currentTimerMode == TimerModeNotStarted ? 100 : 25;
-    if (dist > 25) {
+    if (dist > distTreshold) {
         currentUserLocation = newLocation;
         [self evaluateDistanceAndSortStations:self.bikeStations];
         [self.tableView reloadData];
