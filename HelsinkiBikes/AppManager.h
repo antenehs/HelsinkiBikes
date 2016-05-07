@@ -11,6 +11,9 @@
 
 @interface AppManager : NSObject
 
++(NSString *)appAppStoreLink;
++(NSString *)appAppStoreRateLink;
+
 +(UIColor *)systemYellowColor;
 +(UIColor *)systemGreenColor;
 +(UIColor *)systemRedColor;

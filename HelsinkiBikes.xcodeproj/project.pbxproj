@@ -30,9 +30,13 @@
 		6683CF911CDA902F0044727B /* BikeStationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CF901CDA902F0044727B /* BikeStationAnnotation.m */; };
 		6683CF941CDB6B350044727B /* UIScrollView+APParallaxHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CF921CDB6B350044727B /* UIScrollView+APParallaxHeader.m */; };
 		6683CF971CDB8DA00044727B /* BouncingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CF961CDB8DA00044727B /* BouncingButton.m */; };
-		6683CFA11CDBB5350044727B /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CFA01CDBB5350044727B /* SettingTableViewController.m */; };
-		6683CFA41CDBB54C0044727B /* FilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CFA31CDBB54C0044727B /* FilterTableViewController.m */; };
+		6683CFA11CDBB5350044727B /* MoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CFA01CDBB5350044727B /* MoreTableViewController.m */; };
+		6683CFA41CDBB54C0044727B /* NotificationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CFA31CDBB54C0044727B /* NotificationsTableViewController.m */; };
 		6683CFA71CDBD1EF0044727B /* LabelWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CFA61CDBD1EF0044727B /* LabelWithBackground.m */; };
+		6683CFAA1CDD16C70044727B /* StaticDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CFA91CDD16C70044727B /* StaticDataTableViewController.m */; };
+		6683CFAF1CDD2C6A0044727B /* LocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CFAD1CDD2C6A0044727B /* LocalNotificationManager.m */; };
+		6683CFB01CDD2C6A0044727B /* SettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6683CFAE1CDD2C6A0044727B /* SettingsManager.m */; };
+		6683CFB51CDDFC600044727B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6683CFB71CDDFC600044727B /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,12 +89,22 @@
 		6683CF931CDB6B350044727B /* UIScrollView+APParallaxHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+APParallaxHeader.h"; sourceTree = "<group>"; };
 		6683CF951CDB8DA00044727B /* BouncingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BouncingButton.h; sourceTree = "<group>"; };
 		6683CF961CDB8DA00044727B /* BouncingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BouncingButton.m; sourceTree = "<group>"; };
-		6683CF9F1CDBB5350044727B /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
-		6683CFA01CDBB5350044727B /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
-		6683CFA21CDBB54C0044727B /* FilterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterTableViewController.h; sourceTree = "<group>"; };
-		6683CFA31CDBB54C0044727B /* FilterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterTableViewController.m; sourceTree = "<group>"; };
+		6683CF9F1CDBB5350044727B /* MoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreTableViewController.h; sourceTree = "<group>"; };
+		6683CFA01CDBB5350044727B /* MoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreTableViewController.m; sourceTree = "<group>"; };
+		6683CFA21CDBB54C0044727B /* NotificationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsTableViewController.h; sourceTree = "<group>"; };
+		6683CFA31CDBB54C0044727B /* NotificationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsTableViewController.m; sourceTree = "<group>"; };
 		6683CFA51CDBD1EF0044727B /* LabelWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelWithBackground.h; sourceTree = "<group>"; };
 		6683CFA61CDBD1EF0044727B /* LabelWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelWithBackground.m; sourceTree = "<group>"; };
+		6683CFA81CDD16C70044727B /* StaticDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticDataTableViewController.h; sourceTree = "<group>"; };
+		6683CFA91CDD16C70044727B /* StaticDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticDataTableViewController.m; sourceTree = "<group>"; };
+		6683CFAB1CDD2C6A0044727B /* LocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotificationManager.h; sourceTree = "<group>"; };
+		6683CFAC1CDD2C6A0044727B /* SettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsManager.h; sourceTree = "<group>"; };
+		6683CFAD1CDD2C6A0044727B /* LocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationManager.m; sourceTree = "<group>"; };
+		6683CFAE1CDD2C6A0044727B /* SettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsManager.m; sourceTree = "<group>"; };
+		6683CFB11CDDFA7E0044727B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Main.strings; sourceTree = "<group>"; };
+		6683CFB21CDDFA7E0044727B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		6683CFB81CDDFC650044727B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6683CFB91CDDFC660044727B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		679BB580373AABE35151A199 /* libPods-HelsinkiBikes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelsinkiBikes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B8EC2927CADF343772C5560 /* Pods-HelsinkiBikes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelsinkiBikes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HelsinkiBikes/Pods-HelsinkiBikes.debug.xcconfig"; sourceTree = "<group>"; };
 		F9CE75649D4C4F8B49E86CA3 /* Pods-HelsinkiBikes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelsinkiBikes.release.xcconfig"; path = "Pods/Target Support Files/Pods-HelsinkiBikes/Pods-HelsinkiBikes.release.xcconfig"; sourceTree = "<group>"; };
@@ -172,6 +186,7 @@
 				6683CF701CDA74770044727B /* Espoo.gpx */,
 				6683CF711CDA74770044727B /* Helsinki.gpx */,
 				6683CF411CDA6D5B0044727B /* main.m */,
+				6683CFB71CDDFC600044727B /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -200,10 +215,12 @@
 			children = (
 				6683CF461CDA6D5B0044727B /* MainViewController.h */,
 				6683CF471CDA6D5B0044727B /* MainViewController.m */,
-				6683CF9F1CDBB5350044727B /* SettingTableViewController.h */,
-				6683CFA01CDBB5350044727B /* SettingTableViewController.m */,
-				6683CFA21CDBB54C0044727B /* FilterTableViewController.h */,
-				6683CFA31CDBB54C0044727B /* FilterTableViewController.m */,
+				6683CF9F1CDBB5350044727B /* MoreTableViewController.h */,
+				6683CFA01CDBB5350044727B /* MoreTableViewController.m */,
+				6683CFA21CDBB54C0044727B /* NotificationsTableViewController.h */,
+				6683CFA31CDBB54C0044727B /* NotificationsTableViewController.m */,
+				6683CFA81CDD16C70044727B /* StaticDataTableViewController.h */,
+				6683CFA91CDD16C70044727B /* StaticDataTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -226,6 +243,10 @@
 				6683CF781CDA78920044727B /* AppManager.m */,
 				6683CF8B1CDA8C600044727B /* DataManager.h */,
 				6683CF8C1CDA8C600044727B /* DataManager.m */,
+				6683CFAC1CDD2C6A0044727B /* SettingsManager.h */,
+				6683CFAE1CDD2C6A0044727B /* SettingsManager.m */,
+				6683CFAB1CDD2C6A0044727B /* LocalNotificationManager.h */,
+				6683CFAD1CDD2C6A0044727B /* LocalNotificationManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -348,6 +369,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fi,
 			);
 			mainGroup = 6683CF341CDA6D5B0044727B;
 			productRefGroup = 6683CF3E1CDA6D5B0044727B /* Products */;
@@ -368,6 +390,7 @@
 				6683CF721CDA74770044727B /* Espoo.gpx in Resources */,
 				6683CF501CDA6D5B0044727B /* LaunchScreen.storyboard in Resources */,
 				6683CF761CDA77B20044727B /* Pictures.xcassets in Resources */,
+				6683CFB51CDDFC600044727B /* Localizable.strings in Resources */,
 				6683CF731CDA74770044727B /* Helsinki.gpx in Resources */,
 				6683CF4D1CDA6D5B0044727B /* Assets.xcassets in Resources */,
 				6683CF4B1CDA6D5B0044727B /* Main.storyboard in Resources */,
@@ -438,19 +461,22 @@
 			files = (
 				6683CF8A1CDA859A0044727B /* StringFormatter.m in Sources */,
 				6683CF481CDA6D5B0044727B /* MainViewController.m in Sources */,
+				6683CFAF1CDD2C6A0044727B /* LocalNotificationManager.m in Sources */,
 				6683CF451CDA6D5B0044727B /* AppDelegate.m in Sources */,
 				6683CF841CDA82920044727B /* HSLCommunicator.m in Sources */,
-				6683CFA11CDBB5350044727B /* SettingTableViewController.m in Sources */,
+				6683CFA11CDBB5350044727B /* MoreTableViewController.m in Sources */,
 				6683CF871CDA83730044727B /* HSLAndTRECommon.m in Sources */,
 				6683CF911CDA902F0044727B /* BikeStationAnnotation.m in Sources */,
 				6683CFA71CDBD1EF0044727B /* LabelWithBackground.m in Sources */,
 				6683CF971CDB8DA00044727B /* BouncingButton.m in Sources */,
+				6683CFAA1CDD16C70044727B /* StaticDataTableViewController.m in Sources */,
 				6683CF421CDA6D5B0044727B /* main.m in Sources */,
+				6683CFB01CDD2C6A0044727B /* SettingsManager.m in Sources */,
 				6683CF941CDB6B350044727B /* UIScrollView+APParallaxHeader.m in Sources */,
 				6683CF7C1CDA7C680044727B /* BikeStation.m in Sources */,
 				6683CF6C1CDA6F4E0044727B /* APIClient.m in Sources */,
 				6683CF801CDA7E220044727B /* ModelMapping.m in Sources */,
-				6683CFA41CDBB54C0044727B /* FilterTableViewController.m in Sources */,
+				6683CFA41CDBB54C0044727B /* NotificationsTableViewController.m in Sources */,
 				6683CF8D1CDA8C600044727B /* DataManager.m in Sources */,
 				6683CF791CDA78920044727B /* AppManager.m in Sources */,
 			);
@@ -479,6 +505,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6683CF4A1CDA6D5B0044727B /* Base */,
+				6683CFB11CDDFA7E0044727B /* fi */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -487,8 +514,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				6683CF4F1CDA6D5B0044727B /* Base */,
+				6683CFB21CDDFA7E0044727B /* fi */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		6683CFB71CDDFC600044727B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6683CFB81CDDFC650044727B /* en */,
+				6683CFB91CDDFC660044727B /* fi */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -599,6 +636,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ewketapps.HelsinkiBikes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -623,6 +661,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ewketapps.HelsinkiBikes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

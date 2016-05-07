@@ -57,9 +57,35 @@
     if (self.spacesAvailable.intValue == 0) {
         return NSLocalizedString(@"NO RETURN SPACE", nil);
     } else if(self.spacesAvailable.intValue == 1) {
-        return [NSString stringWithFormat:@"1 %@", NSLocalizedString(@"SPACE", nil)];
+        return [NSString stringWithFormat:@"1 %@", NSLocalizedString(@"FREE SPACE", nil)];
     } else {
-        return [NSString stringWithFormat:@"%d %@",self.spacesAvailable.intValue, NSLocalizedString(@"SPACES", nil)];
+        return [NSString stringWithFormat:@"%d %@",self.spacesAvailable.intValue, NSLocalizedString(@"FREE SPACES", nil)];
+    }
+}
+
+-(Availability)bikeAvailability {
+    int bikes = self.bikesAvailable.intValue;
+    int total = self.bikesAvailable.intValue + self.spacesAvailable.intValue;
+    
+    if (bikes == 0) {
+        return NotAvailable;
+    } else if (bikes < 5 && total > 2 * bikes) {
+        return LowAvailability;
+    } else {
+        return HighAvailability;
+    }
+}
+
+-(Availability)spaceAvailability {
+    int spaces = self.spacesAvailable.intValue;
+    int total = self.bikesAvailable.intValue + self.spacesAvailable.intValue;
+    
+    if (spaces == 0) {
+        return NotAvailable;
+    } else if (spaces < 5 && total > 2 * spaces) {
+        return LowAvailability;
+    } else {
+        return HighAvailability;
     }
 }
 

@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="HelsinkiBikes/Base.lproj/LaunchScreen.storyboard" source-language="en" datatype="plaintext" target-language="fi">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body/>
+  </file>
+  <file original="HelsinkiBikes/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="fi">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="1up-us-TMO.text">
+        <source>30:00</source>
+        <target>30:00</target>
+        <note>Class = "UILabel"; text = "30:00"; ObjectID = "1up-us-TMO";</note>
+      </trans-unit>
+      <trans-unit id="6u4-sP-w9F.normalTitle">
+        <source>RETRY</source>
+        <target>RETRY</target>
+        <note>Class = "UIButton"; normalTitle = "RETRY"; ObjectID = "6u4-sP-w9F";</note>
+      </trans-unit>
+      <trans-unit id="8JY-Mf-IdO.normalTitle">
+        <source>START RIDE</source>
+        <target>START RIDE</target>
+        <note>Class = "UIButton"; normalTitle = "START RIDE"; ObjectID = "8JY-Mf-IdO";</note>
+      </trans-unit>
+      <trans-unit id="176-5V-FzW.text">
+        <source>24 BIKES</source>
+        <target>24 BIKES</target>
+        <note>Class = "UILabel"; text = "24 BIKES"; ObjectID = "176-5V-FzW";</note>
+      </trans-unit>
+      <trans-unit id="Aiv-0G-46e.title">
+        <source>HELSINKI BIKES</source>
+        <target>HELSINKI BIKES</target>
+        <note>Class = "UINavigationItem"; title = "HELSINKI BIKES"; ObjectID = "Aiv-0G-46e";</note>
+      </trans-unit>
+      <trans-unit id="B3X-f4-bHy.text">
+        <source>Notifications</source>
+        <target>Notifications</target>
+        <note>Class = "UILabel"; text = "Notifications"; ObjectID = "B3X-f4-bHy";</note>
+      </trans-unit>
+      <trans-unit id="EkD-De-UFB.text">
+        <source>Contact Me</source>
+        <target>Contact Me</target>
+        <note>Class = "UILabel"; text = "Contact Me"; ObjectID = "EkD-De-UFB";</note>
+      </trans-unit>
+      <trans-unit id="MMP-Xe-eTe.text">
+        <source>RAUTATIENTORI</source>
+        <target>RAUTATIENTORI</target>
+        <note>Class = "UILabel"; text = "RAUTATIENTORI"; ObjectID = "MMP-Xe-eTe";</note>
+      </trans-unit>
+      <trans-unit id="WdY-qn-X0M.footerTitle">
+        <source>Enable notifications to be updated about several things such as when free time is about to end.</source>
+        <target>Enable notifications to be updated about several things such as when free time is about to end.</target>
+        <note>Class = "UITableViewSection"; footerTitle = "Enable notifications to be updated about several things such as when free time is about to end."; ObjectID = "WdY-qn-X0M";</note>
+      </trans-unit>
+      <trans-unit id="X08-NA-6tY.text">
+        <source>5 minutes before free time end</source>
+        <target>5 minutes before free time end</target>
+        <note>Class = "UILabel"; text = "5 minutes before free time end"; ObjectID = "X08-NA-6tY";</note>
+      </trans-unit>
+      <trans-unit id="ZLI-sE-zg8.title">
+        <source>NOTIFICATIONS</source>
+        <target>NOTIFICATIONS</target>
+        <note>Class = "UINavigationItem"; title = "NOTIFICATIONS"; ObjectID = "ZLI-sE-zg8";</note>
+      </trans-unit>
+      <trans-unit id="aXY-5Y-RfE.text">
+        <source>300m</source>
+        <target>300m</target>
+        <note>Class = "UILabel"; text = "300m"; ObjectID = "aXY-5Y-RfE";</note>
+      </trans-unit>
+      <trans-unit id="cPW-NX-F1r.text">
+        <source>EXTRA CHARGE</source>
+        <target>EXTRA CHARGE</target>
+        <note>Class = "UILabel"; text = "EXTRA CHARGE"; ObjectID = "cPW-NX-F1r";</note>
+      </trans-unit>
+      <trans-unit id="ecX-7d-Phy.text">
+        <source>About Helsinki City Bikes</source>
+        <target>About Helsinki City Bikes</target>
+        <note>Class = "UILabel"; text = "About Helsinki City Bikes"; ObjectID = "ecX-7d-Phy";</note>
+      </trans-unit>
+      <trans-unit id="fiN-4Y-jeC.text">
+        <source>Rate</source>
+        <target>Rate</target>
+        <note>Class = "UILabel"; text = "Rate"; ObjectID = "fiN-4Y-jeC";</note>
+      </trans-unit>
+      <trans-unit id="l7i-IT-92w.footerTitle">
+        <source>© 2016 Ewket Apps. This app is made to help people use HSL's City Bike service and it is not affiliated with HSL in anyway. </source>
+        <target>© 2016 Ewket Apps. This app is made to help people use HSL's City Bike service and it is not affiliated with HSL in anyway. </target>
+        <note>Class = "UITableViewSection"; footerTitle = "© 2016 Ewket Apps. This app is made to help people use HSL's City Bike service and it is not affiliated with HSL in anyway. "; ObjectID = "l7i-IT-92w";</note>
+      </trans-unit>
+      <trans-unit id="nnC-Zc-JbY.text">
+        <source>NO INTERNET CONNECTION</source>
+        <target>NO INTERNET CONNECTION</target>
+        <note>Class = "UILabel"; text = "NO INTERNET CONNECTION"; ObjectID = "nnC-Zc-JbY";</note>
+      </trans-unit>
+      <trans-unit id="oWj-JU-n2M.text">
+        <source>Enable Notifications</source>
+        <target>Enable Notifications</target>
+        <note>Class = "UILabel"; text = "Enable Notifications"; ObjectID = "oWj-JU-n2M";</note>
+      </trans-unit>
+      <trans-unit id="ouL-6c-RSS.text">
+        <source>8 SPACES</source>
+        <target>8 SPACES</target>
+        <note>Class = "UILabel"; text = "8 SPACES"; ObjectID = "ouL-6c-RSS";</note>
+      </trans-unit>
+      <trans-unit id="piZ-rQ-bkL.title">
+        <source>MORE</source>
+        <target>MORE</target>
+        <note>Class = "UINavigationItem"; title = "MORE"; ObjectID = "piZ-rQ-bkL";</note>
+      </trans-unit>
+      <trans-unit id="q2S-5h-4nK.text">
+        <source>Tell A Friend</source>
+        <target>Tell A Friend</target>
+        <note>Class = "UILabel"; text = "Tell A Friend"; ObjectID = "q2S-5h-4nK";</note>
+      </trans-unit>
+      <trans-unit id="s8k-wf-VhV.text">
+        <source>Custom</source>
+        <target>Custom</target>
+        <note>Class = "UILabel"; text = "Custom"; ObjectID = "s8k-wf-VhV";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="HelsinkiBikes/Info.plist" source-language="en" datatype="plaintext" target-language="fi">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="HelsinkiBikes/en.lproj/Localizable.strings" source-language="en" datatype="plaintext" target-language="fi">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="1,5 Euro extra charge">
+        <source>1,5 Euro extra charge</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="4,5 Euro extra charge">
+        <source>4,5 Euro extra charge</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="5 Minutes Before Free Time End">
+        <source>5 Minutes Before Free Time End</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="5 mins before free time ends">
+        <source>5 mins before free time ends</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="10 mins before free time ends">
+        <source>10 mins before free time ends</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="30 mins before max time">
+        <source>30 mins before max time</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="30 minutes remaining for the max allowed time.">
+        <source>30 minutes remaining for the max allowed time.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ALL STATIONS">
+        <source>ALL STATIONS</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="About Helsinki City Bikes">
+        <source>About Helsinki City Bikes</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="BIKE">
+        <source>BIKE</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="BIKES">
+        <source>BIKES</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="CONNECTION COULD NOT BE ESTABLISHED TO THE DATA PROVIDER.">
+        <source>CONNECTION COULD NOT BE ESTABLISHED TO THE DATA PROVIDER.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <note>Cancel</note>
+      </trans-unit>
+      <trans-unit id="Check out Helsinki bikes for using HSL City Bikes.">
+        <source>Check out Helsinki bikes for using HSL City Bikes.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Contact Me">
+        <source>Contact Me</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Custom">
+        <source>Custom</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="END RIDE">
+        <source>END RIDE</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="EXTRA CHARGE">
+        <source>EXTRA CHARGE</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enable Notifications">
+        <source>Enable Notifications</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enable notifications to be updated about several things such as when free ride time is about to end and when you are charged certain amount of money.">
+        <source>Enable notifications to be updated about several things such as when free ride time is about to end and when you are charged certain amount of money.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Feel free to contact me for anything, even just to say hi!">
+        <source>Feel free to contact me for anything, even just to say hi!</source>
+        <target>Ole hyvä ja ota yhteyttä. Vaikka vain tervehtiäkseksi</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="HELSINKI BIKES">
+        <source>HELSINKI BIKES</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hi Helsinki Bikes Guys - ">
+        <source>Hi Helsinki Bikes Guys - </source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="LAST UPDATED %@">
+        <source>LAST UPDATED %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="LOADING...">
+        <source>LOADING...</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Looks like access is not granted to this app for location services. Grant access from Settings.">
+        <source>Looks like access is not granted to this app for location services. Grant access from Settings.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Looks like location services is not enabled. Enable it from Settings.">
+        <source>Looks like location services is not enabled. Enable it from Settings.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="MAX TIME EXCEEDED. CHARGE">
+        <source>MAX TIME EXCEEDED. CHARGE</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="MORE">
+        <source>MORE</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="NEAR YOU">
+        <source>NEAR YOU</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="NO BIKES">
+        <source>NO BIKES</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="NO EXTRA CHARGE">
+        <source>NO EXTRA CHARGE</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="NO INTERNET CONNECTION">
+        <source>NO INTERNET CONNECTION</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="NO RETURN SPACE">
+        <source>NO RETURN SPACE</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="NOTIFICATIONS">
+        <source>NOTIFICATIONS</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No Access to Notifications Granted">
+        <source>No Access to Notifications Granted</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Notifications">
+        <source>Notifications</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OK">
+        <source>OK</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Please grant access to Notifications from Settings to use this feature.">
+        <source>Please grant access to Notifications from Settings to use this feature.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="RETRY">
+        <source>RETRY</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="RETRYING...">
+        <source>RETRYING...</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Rate">
+        <source>Rate</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Report A Bug">
+        <source>Report A Bug</source>
+        <target>Ilmoita virheestä</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Request A Feature">
+        <source>Request A Feature</source>
+        <target>Ehdota ominaisuutta</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="SPACE">
+        <source>SPACE</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="SPACES">
+        <source>SPACES</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="START RIDE">
+        <source>START RIDE</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Say Hi!">
+        <source>Say Hi!</source>
+        <target>Sano Hei!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Settings">
+        <source>Settings</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Share on Facebook">
+        <source>Share on Facebook</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Share on Twitter">
+        <source>Share on Twitter</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Sorry">
+        <source>Sorry</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tell A Friend">
+        <source>Tell A Friend</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="They say sharing is caring, right?.">
+        <source>They say sharing is caring, right?.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="UNKNOWN ERROR OCCURED">
+        <source>UNKNOWN ERROR OCCURED</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="UPDATED JUST NOW">
+        <source>UPDATED JUST NOW</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Uh-Oh">
+        <source>Uh-Oh</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="When free time ends">
+        <source>When free time ends</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You can't post to Facebook right now. Make sure your device has an internet connection and you have at least one Facebook account setup">
+        <source>You can't post to Facebook right now. Make sure your device has an internet connection and you have at least one Facebook account setup</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You can't send a tweet right now. Make sure your device has an internet connection and you have at least one Twitter account setup">
+        <source>You can't send a tweet right now. Make sure your device has an internet connection and you have at least one Twitter account setup</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your free usage period just end. You will be charged extra from now on.">
+        <source>Your free usage period just end. You will be charged extra from now on.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your free usage period will end in 5 minutes">
+        <source>Your free usage period will end in 5 minutes</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your free usage period will end in 10 minutes">
+        <source>Your free usage period will end in 10 minutes</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="[Helsinki Bikes Bug Report] - ">
+        <source>[Helsinki Bikes Bug Report] - </source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="[Helsinki Bikes Feature Request] - ">
+        <source>[Helsinki Bikes Feature Request] - </source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="https://www.hsl.fi/en/citybikes">
+        <source>https://www.hsl.fi/en/citybikes</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="see stations nearby">
+        <source>see stations nearby</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="© 2016 Ewket Apps. This app is made to help people use HSL's City Bike service and it is not affiliated with HSL in anyway. ">
+        <source>© 2016 Ewket Apps. This app is made to help people use HSL's City Bike service and it is not affiliated with HSL in anyway. </source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="HelsinkiBikesTests/Info.plist" source-language="en" datatype="plaintext" target-language="fi">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3" build-num="7D175"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

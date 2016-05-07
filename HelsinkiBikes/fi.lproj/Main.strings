@@ -1,0 +1,66 @@
+
+/* Class = "UILabel"; text = "24 BIKES"; ObjectID = "176-5V-FzW"; */
+"176-5V-FzW.text" = "24 BIKES";
+
+/* Class = "UILabel"; text = "30:00"; ObjectID = "1up-us-TMO"; */
+"1up-us-TMO.text" = "30:00";
+
+/* Class = "UIButton"; normalTitle = "RETRY"; ObjectID = "6u4-sP-w9F"; */
+"6u4-sP-w9F.normalTitle" = "RETRY";
+
+/* Class = "UIButton"; normalTitle = "START RIDE"; ObjectID = "8JY-Mf-IdO"; */
+"8JY-Mf-IdO.normalTitle" = "START RIDE";
+
+/* Class = "UINavigationItem"; title = "HELSINKI BIKES"; ObjectID = "Aiv-0G-46e"; */
+"Aiv-0G-46e.title" = "HELSINKI BIKES";
+
+/* Class = "UILabel"; text = "Notifications"; ObjectID = "B3X-f4-bHy"; */
+"B3X-f4-bHy.text" = "Notifications";
+
+/* Class = "UILabel"; text = "Contact Me"; ObjectID = "EkD-De-UFB"; */
+"EkD-De-UFB.text" = "Contact Me";
+
+/* Class = "UILabel"; text = "RAUTATIENTORI"; ObjectID = "MMP-Xe-eTe"; */
+"MMP-Xe-eTe.text" = "RAUTATIENTORI";
+
+/* Class = "UITableViewSection"; footerTitle = "Enable notifications to be updated about several things such as when free time is about to end."; ObjectID = "WdY-qn-X0M"; */
+"WdY-qn-X0M.footerTitle" = "Enable notifications to be updated about several things such as when free time is about to end.";
+
+/* Class = "UILabel"; text = "5 minutes before free time end"; ObjectID = "X08-NA-6tY"; */
+"X08-NA-6tY.text" = "5 minutes before free time end";
+
+/* Class = "UINavigationItem"; title = "NOTIFICATIONS"; ObjectID = "ZLI-sE-zg8"; */
+"ZLI-sE-zg8.title" = "NOTIFICATIONS";
+
+/* Class = "UILabel"; text = "300m"; ObjectID = "aXY-5Y-RfE"; */
+"aXY-5Y-RfE.text" = "300m";
+
+/* Class = "UILabel"; text = "EXTRA CHARGE"; ObjectID = "cPW-NX-F1r"; */
+"cPW-NX-F1r.text" = "EXTRA CHARGE";
+
+/* Class = "UILabel"; text = "About Helsinki City Bikes"; ObjectID = "ecX-7d-Phy"; */
+"ecX-7d-Phy.text" = "About Helsinki City Bikes";
+
+/* Class = "UILabel"; text = "Rate"; ObjectID = "fiN-4Y-jeC"; */
+"fiN-4Y-jeC.text" = "Rate";
+
+/* Class = "UITableViewSection"; footerTitle = "© 2016 Ewket Apps. This app is made to help people use HSL's City Bike service and it is not affiliated with HSL in anyway. "; ObjectID = "l7i-IT-92w"; */
+"l7i-IT-92w.footerTitle" = "© 2016 Ewket Apps. This app is made to help people use HSL's City Bike service and it is not affiliated with HSL in anyway. ";
+
+/* Class = "UILabel"; text = "NO INTERNET CONNECTION"; ObjectID = "nnC-Zc-JbY"; */
+"nnC-Zc-JbY.text" = "NO INTERNET CONNECTION";
+
+/* Class = "UILabel"; text = "Enable Notifications"; ObjectID = "oWj-JU-n2M"; */
+"oWj-JU-n2M.text" = "Enable Notifications";
+
+/* Class = "UILabel"; text = "8 SPACES"; ObjectID = "ouL-6c-RSS"; */
+"ouL-6c-RSS.text" = "8 SPACES";
+
+/* Class = "UINavigationItem"; title = "MORE"; ObjectID = "piZ-rQ-bkL"; */
+"piZ-rQ-bkL.title" = "MORE";
+
+/* Class = "UILabel"; text = "Tell A Friend"; ObjectID = "q2S-5h-4nK"; */
+"q2S-5h-4nK.text" = "Tell A Friend";
+
+/* Class = "UILabel"; text = "Custom"; ObjectID = "s8k-wf-VhV"; */
+"s8k-wf-VhV.text" = "Custom";

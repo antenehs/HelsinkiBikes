@@ -26,6 +26,13 @@
 #import "ModelMapping.h"
 #import <MapKit/MapKit.h>
 
+typedef enum
+{
+    NotAvailable = 0,
+    LowAvailability = 1,
+    HighAvailability = 2
+} Availability;
+
 @interface BikeStation : NSObject <MappableObject>
 
 -(BOOL)isValid;
@@ -43,5 +50,7 @@
 @property (nonatomic, strong)NSString *bikesAvailableString;
 @property (nonatomic, strong)NSString *spacesAvailableString;
 @property (nonatomic)CLLocationDistance distance;
+@property (nonatomic)Availability bikeAvailability;
+@property (nonatomic)Availability spaceAvailability;
 
 @end

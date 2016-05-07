@@ -18,6 +18,13 @@ typedef enum
     TimerViewModeExpanded = 3
 } TimerViewMode;
 
+typedef enum
+{
+    TimerModeNotStarted = 0,
+    TimerModeInitial = 1,
+    TimerModeExtraTime = 2
+} TimerMode;
+
 @interface MainViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource> {
     
     //TOP VIEW
@@ -25,6 +32,8 @@ typedef enum
     IBOutlet BouncingButton *startRideButton;
     IBOutlet UILabel *timerLabel;
     IBOutlet NSLayoutConstraint *timerViewHeightConstraint;
+    IBOutlet UILabel *additionalInfoLabel;
+    IBOutlet NSLayoutConstraint *timerLabelBottomToInfoLabelConstraint;
     
     //MAP VIEW
     IBOutlet UIView *mapContainerView;
@@ -41,10 +50,22 @@ typedef enum
     NSTimer *updateTimer;
     NSDate *lastUpdateTime;
     
+    NSTimer *counterTimer;
+    NSDate *timerStartTime;
+    BOOL isTimerSlowUpdating;
+    BOOL isTimerRunning;
+    
+    double totalExtraCharge;
+    
     NSString *tableViewInfoCellText;
     BOOL showRetryButton;
+    BOOL viewAppearedFirstTime;
     
+    TimerViewMode currentTimerViewMode;
+    TimerMode currentTimerMode;
 }
+
+-(void)setNotificationForRunningTimer;
 
 @property (nonatomic, weak)IBOutlet UITableView *tableView;
 @property (nonatomic, strong)NSArray *bikeStations;

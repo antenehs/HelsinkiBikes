@@ -14,13 +14,36 @@
 #import "UIScrollView+APParallaxHeader.h"
 #import <pop/POP.h>
 #import "StringFormatter.h"
+#import "SettingsManager.h"
+#import "LocalNotificationManager.h"
 
 CLLocationCoordinate2D kHslRegionCenter = {.latitude =  60.170163, .longitude =  24.941352};
 const NSInteger kUpdateInterval = 30;
 
+//#if DEBUG
+//const NSInteger kCounterUpdateInterval = 1;
+//const NSInteger kCounterSlowUpdateInterval = 60;
+//const NSInteger kAllowedFreeTime = 5;
+//const NSInteger kOneHourMark = 10;
+//const NSInteger kTwoHourMark = 20;
+//const NSInteger kMaxAllowedTime = 50;
+//
+//const NSInteger kChargableTimeUnit = 5;
+//#else
+const NSInteger kCounterUpdateInterval = 1;
+const NSInteger kCounterSlowUpdateInterval = 60;
+const NSInteger kAllowedFreeTime = 1800;
+const NSInteger kOneHourMark = 3600;
+const NSInteger kTwoHourMark = 7200;
+const NSInteger kMaxAllowedTime = 18000;
+
+const NSInteger kChargableTimeUnit = 1800;
+//#endif
+
 @interface MainViewController ()
 
 @property (nonatomic, strong)DataManager *dataManager;
+@property(nonatomic, strong)LocalNotificationManager *notificationManager;
 
 @end
 
@@ -30,26 +53,42 @@ const NSInteger kUpdateInterval = 30;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    viewAppearedFirstTime = YES;
+    
     skipUserLocation = YES;
+    isTimerRunning = NO;
+    totalExtraCharge = 0;
     tableViewInfoCellText = NSLocalizedString(@"LOADING...", nil);
     showRetryButton = NO;
     self.bikeStations = @[];
     dataManager = [[DataManager alloc] init];
+    self.notificationManager = [LocalNotificationManager sharedManger];
     
     [self setupMainView];
     [self setupMapView];
     [self initializeLocation];
     [self fetchAllBikeStations];
     [self initUpdateTimer];
-    [self setTimerViewMode:TimerViewModeHidden animated:NO];
+    [self setTimerViewMode:TimerViewModeCompact animated:NO];
+//    [self testMoneyCalculation];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    //Maybe prevents flickering at counter.
+    [self updateTime];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [self setupMapView];
-    [self setUpTimerView];
+    if (viewAppearedFirstTime)
+        [self setupMapView];
+    
     [self.tableView reloadData];
+    
+    viewAppearedFirstTime = NO;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -66,7 +105,10 @@ const NSInteger kUpdateInterval = 30;
 }
 
 - (void)setupMapView {
-    CGFloat height = 300;
+    //Never exceed half
+    CGFloat halfView = self.view.frame.size.height/2;
+    CGFloat maxPosible = self.view.frame.size.height - 250;
+    CGFloat height = maxPosible > halfView ? halfView : maxPosible;
     [mapContainerView setFrame:CGRectMake(0, 0, self.view.frame.size.width, height)];
     
     CLLocationCoordinate2D coord = {.latitude =  60.1733239, .longitude =  24.9410248};
@@ -77,7 +119,6 @@ const NSInteger kUpdateInterval = 30;
     currentLocationButton.layer.borderColor = [AppManager systemYellowColor].CGColor;
     
     [self.tableView addParallaxWithView:mapContainerView andHeight:height];
-    //TODO: Scroll so that one cell is visible and do not allow scrolling above that.
 }
 
 - (void)initUpdateTimer {
@@ -89,11 +130,6 @@ const NSInteger kUpdateInterval = 30;
 }
 
 #pragma mark - Timer view methods
-- (void)setUpTimerView {
-    [startRideButton setTitle:NSLocalizedString(@"START RIDE", nil) forState:UIControlStateNormal];
-    [self setTimerViewMode:TimerViewModeCompact animated:YES];
-}
-
 - (void)setTimerViewMode:(TimerViewMode)viewMode animated:(BOOL)animated {
     CGFloat height = 0;
     CGFloat countDownCounterFont = 0;
@@ -101,21 +137,25 @@ const NSInteger kUpdateInterval = 30;
     NSString *buttonText = NSLocalizedString(@"END RIDE", nil);
     
     if (viewMode == TimerViewModeHidden) {
-        height = 60;
+        height = 0;
         countDownCounterFont = 0;
         buttonColor = [AppManager systemGreenColor];
         buttonText = NSLocalizedString(@"START RIDE", nil);
+        timerLabelBottomToInfoLabelConstraint.active = NO;
     } else if (viewMode == TimerViewModeCompact) {
         height = 60;
         countDownCounterFont = 40;
         buttonColor = [AppManager systemGreenColor];
         buttonText = NSLocalizedString(@"START RIDE", nil);
+        timerLabelBottomToInfoLabelConstraint.active = NO;
     } else if(viewMode == TimerViewModeNormal) {
         height = 115;
         countDownCounterFont = 60;
+        timerLabelBottomToInfoLabelConstraint.active = YES;
     } else {
         height = 115;
         countDownCounterFont = 30;
+        NSAssert(NO, @"Should not reach here");
     }
     
     timerViewHeightConstraint.constant = height;
@@ -125,10 +165,22 @@ const NSInteger kUpdateInterval = 30;
     [self springAnimationWithDuration:animated?0.5:0 animation:^{
         [startRideButton setTitle:buttonText forState:UIControlStateNormal];
         [startRideButton setBackgroundColor:buttonColor];
+        additionalInfoLabel.alpha = viewMode == TimerViewModeNormal ? 1.0 : 0.0;
         [self.view layoutSubviews];
         [timerView layoutSubviews];
     } completion:NULL];
+    
+    currentTimerViewMode = viewMode;
 }
+
+//-(void)makeFirstCellVisibleIfNot {
+//    
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//    if ([self.tableView.indexPathsForVisibleRows containsObject:indexPath]) {
+//        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+//                              withRowAnimation:UITableViewRowAnimationFade];
+//    }
+//}
 
 - (void)springAnimationWithDuration:(NSTimeInterval)duration animation:(ActionBlock)animation completion:(void (^ __nullable)(BOOL finished))completion {
     [UIView animateWithDuration:duration
@@ -137,6 +189,166 @@ const NSInteger kUpdateInterval = 30;
           initialSpringVelocity:1.1
                         options:0
                      animations:animation completion:completion];
+}
+
+#pragma mark - Time counting methods
+-(BOOL)isTimerRunning {
+    return isTimerRunning;
+}
+-(void)startTimer {
+    if ([self isTimerRunning]) return;
+    
+    [self saveTimerStartTime:[NSDate date]];
+    [self updateTime];
+    counterTimer = [NSTimer scheduledTimerWithTimeInterval:kCounterUpdateInterval target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
+    isTimerSlowUpdating = NO;
+    
+    isTimerRunning = YES;
+    
+    if (![self.notificationManager isLocalNotificationEnabled]) {
+        [self.notificationManager registerNotification];
+    } else {
+        [self setNotificationForRunningTimer];
+    }
+    
+    currentTimerMode = TimerModeInitial;
+}
+
+-(void)setNotificationForRunningTimer {
+    if (isTimerRunning && timerStartTime) {
+        if ([SettingsManager areNotificationsEnabled]) {
+            [self.notificationManager setNotificationForDefaultTypeFromTime:timerStartTime];
+        }
+    }
+}
+
+-(void)endTimer {
+    [counterTimer invalidate];
+    timerLabel.text = [self prettyFormatTimeFromSeconds:kAllowedFreeTime];
+    isTimerRunning = NO;
+    [[LocalNotificationManager sharedManger] cancelAllNotification];
+    currentTimerMode = TimerModeNotStarted;
+}
+
+-(void)saveTimerStartTime:(NSDate *)startTime {
+    //This is where to save start time to defaults in case it needs to be persisted
+    timerStartTime = startTime;
+}
+
+-(NSDate *)getTimerStartTime {
+    return timerStartTime;
+}
+
+-(void)updateTime {
+    if (!timerStartTime) {
+        timerLabel.text = [self prettyFormatTimeFromSeconds:kAllowedFreeTime];
+        return;
+    }
+    
+    NSTimeInterval timeSinceStart = [[NSDate date] timeIntervalSinceDate:timerStartTime];
+    additionalInfoLabel.attributedText = [self extraChargeStringForTime:timeSinceStart];
+    
+    if (timeSinceStart <= kAllowedFreeTime) {
+        //Count down to kAllowedFreeTime
+        NSTimeInterval remaining = kAllowedFreeTime - timeSinceStart;
+        timerLabel.text = [self prettyFormatTimeFromSeconds:remaining];
+    } else if (timeSinceStart <= kMaxAllowedTime) {
+        //Count up
+        currentTimerMode = TimerModeExtraTime;
+        if (timeSinceStart > 3600 && !isTimerSlowUpdating) { //Slow timer down after one hour
+            counterTimer = [NSTimer scheduledTimerWithTimeInterval:kCounterSlowUpdateInterval target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
+            isTimerSlowUpdating = YES;
+        }
+        
+        timerLabel.text = [NSString stringWithFormat:@"+%@", [self prettyFormatTimeFromSeconds:timeSinceStart - kAllowedFreeTime]];
+    } else {
+        timerLabel.text = [NSString stringWithFormat:@"+%@", [self prettyFormatTimeFromSeconds:kMaxAllowedTime - kAllowedFreeTime]];
+        [counterTimer invalidate];
+    }
+    
+}
+
+-(NSString *)prettyFormatTimeFromSeconds:(NSInteger)totalSeconds {
+    //1800,
+    int seconds, minutes, hours;
+    seconds = totalSeconds % 60;
+    minutes = (totalSeconds/60) % 60;
+    hours = (totalSeconds/3600) % 60;
+    
+    NSString *secondString = [NSString stringWithFormat:@"%d", seconds];
+    if (seconds < 10) {
+        secondString = [NSString stringWithFormat:@"0%d", seconds];
+    }
+    
+    NSString *minuteString = [NSString stringWithFormat:@"%d", minutes];
+    if (minutes < 10) {
+        minuteString = [NSString stringWithFormat:@"0%d", minutes];
+    }
+    
+    if (hours > 0) {
+        return [NSString stringWithFormat:@"%dh %@", hours, minuteString];
+    } else {
+        return [NSString stringWithFormat:@"%@:%@", minuteString, secondString];
+    }
+}
+
+-(NSAttributedString *)extraChargeStringForTime:(NSInteger)totalSeconds {
+    double moneyAmount = [self moneyForSeconds:totalSeconds];
+    
+    if (moneyAmount == 0)
+        return [[NSAttributedString alloc] initWithString:NSLocalizedString(@"NO EXTRA CHARGE", nil)];
+    
+    NSString *moneyString = [NSString stringWithFormat:@"€%@", [StringFormatter formatRoundedNumberFromDouble:moneyAmount roundDigits:1 androundUp:YES]];
+    
+    NSString *fullText = nil;
+    if (totalSeconds < kMaxAllowedTime) {
+        fullText = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"EXTRA CHARGE", nil), moneyString];
+    } else {
+        fullText = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"MAX TIME EXCEEDED. CHARGE", nil), moneyString];
+    }
+    
+    UIFont *normalFont = [UIFont systemFontOfSize:14];
+    UIFont *highlightedFont = [UIFont systemFontOfSize:15 weight:UIFontWeightSemibold];
+    
+    
+    return [StringFormatter highlightSubstringInString:fullText substring:moneyString normalFont:normalFont highlightedFont:highlightedFont hightlightColor:[AppManager systemRedColor]];
+}
+
+-(double)moneyForSeconds:(NSInteger)totalSeconds {
+    double totalMoney = 0;
+    NSInteger chargableSecs = totalSeconds - kAllowedFreeTime;
+    if (chargableSecs < 0) return 0;
+    
+    if (totalSeconds <= kOneHourMark) { //Charge 0.5 per 30 min
+        totalMoney = 0.5;
+    } else if (totalSeconds > kOneHourMark && totalSeconds <= kTwoHourMark) { //Charge 1 per 30 min
+        totalMoney = (totalSeconds - kOneHourMark) <= kChargableTimeUnit ? 0.5 + 1 : 0.5 + 2;
+    } else if (totalSeconds > kTwoHourMark && totalSeconds < kMaxAllowedTime) { //Charge 2 per 30 min
+        NSInteger numberOf30s = ((totalSeconds - kTwoHourMark)/kChargableTimeUnit) + 1;
+        totalMoney = 0.5 + 2 + (numberOf30s * 2);
+    } else {
+        totalMoney = 0.5 + 2 + 12;
+    }
+    
+    NSLog(@"%ld - %f - %f", (long)totalSeconds, (totalSeconds/60.0)/30.0, totalMoney);
+    return totalMoney;
+}
+
+-(void)testMoneyCalculation {
+    NSAssert([self moneyForSeconds:900] == 0, @"Wrong calc");
+    NSAssert([self moneyForSeconds:1801] == 0.5, @"Wrong calc");
+    NSAssert([self moneyForSeconds:3599] == 0.5, @"Wrong calc");
+    NSAssert([self moneyForSeconds:4000] == 1.5, @"Wrong calc");
+    NSAssert([self moneyForSeconds:7000] == 2.5, @"Wrong calc");
+    NSAssert([self moneyForSeconds:7300] == 4.5, @"Wrong calc");
+    NSAssert([self moneyForSeconds:9300] == 6.5, @"Wrong calc");
+    NSAssert([self moneyForSeconds:11300] == 8.5, @"Wrong calc");
+    NSAssert([self moneyForSeconds:13000] == 10.5, @"Wrong calc");
+    NSAssert([self moneyForSeconds:14000] == 10.5, @"Wrong calc");
+    NSAssert([self moneyForSeconds:15000] == 12.5, @"Wrong calc");
+    NSAssert([self moneyForSeconds:16000] == 12.5, @"Wrong calc");
+    NSAssert([self moneyForSeconds:17000] == 14.5, @"Wrong calc");
+    NSAssert([self moneyForSeconds:20000] == 14.5, @"Wrong calc");
 }
 
 #pragma mark - table view methods
@@ -291,6 +503,7 @@ const NSInteger kUpdateInterval = 30;
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
     CLLocation *newLocation = [locations lastObject];
+    isLocationServiceAvailable = YES;
     
     if (currentUserLocation == nil && !skipUserLocation) {
         currentUserLocation = newLocation;
@@ -303,6 +516,7 @@ const NSInteger kUpdateInterval = 30;
     skipUserLocation = NO;
     
     CLLocationDistance dist = [currentUserLocation distanceFromLocation:newLocation];
+    CLLocationDistance distTreshold = currentTimerMode == TimerModeNotStarted ? 100 : 25;
     if (dist > 25) {
         currentUserLocation = newLocation;
         [self evaluateDistanceAndSortStations:self.bikeStations];
@@ -376,13 +590,14 @@ const NSInteger kUpdateInterval = 30;
     for (BikeStation *station in stations) {
         if (![station isValid]) continue;
         NSString * title = station.name;
-        NSString * subTitle = [NSString stringWithFormat:@"%d bikes - %d spaces", station.bikesAvailable.intValue, station.spacesAvailable.intValue];
+        NSString * subTitle = [NSString stringWithFormat:@"%@ - %@", station.bikesAvailableString, station.spacesAvailableString];
         CLLocationCoordinate2D coords = station.coordinates;
         
         BikeStationAnnotation *newAnnotation = [[BikeStationAnnotation alloc] initWithTitle:title andSubtitle:subTitle andCoordinate:coords];
         newAnnotation.code = station.stationId;
-        newAnnotation.imageNameForView = @"bikeAnnotation";
-        newAnnotation.annotIdentifier = @"bikeAnnotation";
+        NSString *annotImageName = [self stationAnnotionImageName:station];
+        newAnnotation.imageNameForView = annotImageName;
+        newAnnotation.annotIdentifier = annotImageName;
         
         [mapView addAnnotation:newAnnotation];
     }
@@ -494,14 +709,13 @@ const NSInteger kUpdateInterval = 30;
 }
 
 - (IBAction)startTimerButtonTapped:(id)sender {
-    TimerViewMode mode = timerViewHeightConstraint.constant == 60 ? TimerViewModeNormal : TimerViewModeCompact;
-    [self setTimerViewMode:mode animated:YES];
-    
-//    POPBasicAnimation *scaleAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPScrollViewContentOffset];
-//    scaleAnimation.toValue = [NSValue valueWithCGSize:CGSizeZero];
-//    [self.tableView pop_addAnimation:scaleAnimation forKey:@"tableViewToTopAnimation"];
-    
-//    [self.tableView setContentOffset:CGPointZero animated:YES];
+    if ([self isTimerRunning]) {
+        [self setTimerViewMode:TimerViewModeCompact animated:YES];
+        [self endTimer];
+    } else {
+        [self setTimerViewMode:TimerViewModeNormal animated:YES];
+        [self startTimer];
+    }
 }
 
 - (IBAction)retryButtonTapped:(id)sender {
@@ -513,12 +727,9 @@ const NSInteger kUpdateInterval = 30;
 
 #pragma mark - Bike station helpers
 - (UIColor *)colorForBikeAvailability:(BikeStation *)bikeStation {
-    int bikes = bikeStation.bikesAvailable.intValue;
-    int total = bikeStation.bikesAvailable.intValue + bikeStation.spacesAvailable.intValue;
-    
-    if (bikes == 0) {
+    if (bikeStation.bikeAvailability == NotAvailable) {
         return [UIColor lightGrayColor];
-    } else if (bikes < 5 && total > 2 * bikes) {
+    } else if (bikeStation.bikeAvailability == LowAvailability) {
         return [AppManager systemYellowColor];
     } else {
         return [AppManager systemGreenColor];
@@ -526,15 +737,22 @@ const NSInteger kUpdateInterval = 30;
 }
 
 - (UIColor *)colorForSpaceAvailability:(BikeStation *)bikeStation {
-    int spaces = bikeStation.spacesAvailable.intValue;
-    int total = bikeStation.bikesAvailable.intValue + bikeStation.spacesAvailable.intValue;
-    
-    if (spaces == 0) {
+    if (bikeStation.spaceAvailability == NotAvailable) {
         return [UIColor lightGrayColor];
-    } else if (spaces < 5 && total > 2 * spaces) {
+    } else if (bikeStation.spaceAvailability == LowAvailability) {
         return [AppManager systemYellowColor];
     } else {
         return [AppManager systemGreenColor];
+    }
+}
+
+- (NSString *)stationAnnotionImageName:(BikeStation *)bikeStation {
+    if (bikeStation.bikeAvailability == NotAvailable) {
+        return @"noBikeAnnotation";
+    } else if (bikeStation.bikeAvailability == LowAvailability) {
+        return @"lowAvailBikeAnnotation";
+    } else {
+        return @"highAvailBikeAnnotation";
     }
 }
 
