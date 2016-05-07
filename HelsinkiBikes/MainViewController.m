@@ -228,6 +228,7 @@ const NSInteger kChargableTimeUnit = 1800;
     isTimerRunning = NO;
     [[LocalNotificationManager sharedManger] cancelAllNotification];
     currentTimerMode = TimerModeNotStarted;
+    [self saveTimerStartTime:nil];
 }
 
 -(void)saveTimerStartTime:(NSDate *)startTime {
