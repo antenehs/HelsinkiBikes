@@ -214,14 +214,6 @@ const NSInteger kChargableTimeUnit = 1800;
     currentTimerMode = TimerModeInitial;
 }
 
--(void)setNotificationForRunningTimer {
-    if (isTimerRunning && timerStartTime) {
-        if ([SettingsManager areNotificationsEnabled]) {
-            [self.notificationManager setNotificationForDefaultTypeFromTime:timerStartTime];
-        }
-    }
-}
-
 -(void)endTimer {
     [counterTimer invalidate];
     timerLabel.text = [self prettyFormatTimeFromSeconds:kAllowedFreeTime];
@@ -229,6 +221,14 @@ const NSInteger kChargableTimeUnit = 1800;
     [[LocalNotificationManager sharedManger] cancelAllNotification];
     currentTimerMode = TimerModeNotStarted;
     [self saveTimerStartTime:nil];
+}
+
+-(void)setNotificationForRunningTimer {
+    if (isTimerRunning && timerStartTime) {
+        if ([SettingsManager areNotificationsEnabled]) {
+            [self.notificationManager setNotificationForDefaultTypeFromTime:timerStartTime];
+        }
+    }
 }
 
 -(void)saveTimerStartTime:(NSDate *)startTime {

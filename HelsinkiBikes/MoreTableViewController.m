@@ -53,12 +53,16 @@
 }
 
 - (void)openAboutBikesPage {
+    /* Do not open in safariviewcontroll because it causes app review to be rejected.
     if ([SFSafariViewController class] != nil) {
         SFSafariViewController *controller = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:NSLocalizedString(@"https://www.hsl.fi/en/citybikes", nil)]];
         [self presentViewController:controller animated:YES completion:nil];
     } else {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:NSLocalizedString(@"https://www.hsl.fi/en/citybikes", nil)]];
     }
+     */
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:NSLocalizedString(@"https://www.hsl.fi/en/citybikes", nil)]];
 }
 
 - (IBAction)contactUsButtonPressed:(id)sender {
